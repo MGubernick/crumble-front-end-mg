@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Crumble!</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,54 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <h1 class="game-name">Crumble!</h1>
+      <h6 class="my-name">By Matt G.</h6>
+      <br>
+      <h1 id='message'></h1>
+
+  <div class="before-sign-in">
+    <form id="sign-in">
+      <input type="text" name="credentials[email]" placeholder="email" />
+      <input type="password" name="credentials[password]" placeholder="password" />
+      <button type="submit" name="button">Sign In!</button>
+    </form>
+
+    <form id="sign-up">
+      <input type="text" name="credentials[email]" placeholder="email" />
+      <input type="password" name="credentials[password]" placeholder="password" />
+      <input type="password" name="credentials[password_confirmation]" placeholder="confirm password" />
+      <button type="submit" name="button">Sign Up!</button>
+    </form>
+  </div>
+
+  <div class="after-sign-in">
+
+    <form id="change-password">
+      <input type="password" name="passwords[old]" placeholder="Old Password" />
+      <input type="password" name="passwords[new]" placeholder="New Password" />
+      <button type="submit" name="button">Change My Password!</button>
+    </form>
+
+    <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
+  </div>
+
+  <div id="index-all-button">
+
+    <button class="all-the-recipes" type="button">Checkout All The Recipes</button>
+
+  </div>
+
+  <div id="index-my-recipes">
+
+    <button class="all-my-recipes" type="button">Checkout All My Recipes</button>
+
+  </div>
+
+  <div id="recipe-display">
+    <p class="list-recipes"></p>
+  </div>
+
+
+
     </body>
 </html>
