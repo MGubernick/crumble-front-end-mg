@@ -34,8 +34,18 @@ const onMyIndex = function (event) {
     .catch(ui.onMyIndexFailure)
 }
 
+const onAllIndex = function (event) {
+  const form = event.target
+  const recipeData = getFormFields(form)
+
+  api.recipeIndex(recipeData)
+    .then(ui.onAllIndexSuccess)
+    .catch(ui.onAllIndexFailure)
+}
+
 module.exports = {
   onShowCreate: onShowCreate,
   onCreateRecipe: onCreateRecipe,
-  onMyIndex: onMyIndex
+  onMyIndex: onMyIndex,
+  onAllIndex: onAllIndex
 }

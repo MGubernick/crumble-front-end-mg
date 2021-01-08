@@ -44,6 +44,8 @@ const signOutSuccess = function () {
   $('.before-sign-in').show()
   $('.after-sign-in').hide()
   $('#after-create-button-click').hide()
+  $('#recipe-display').hide()
+  $('#recipe-display-header').hide()
   $('form').trigger('reset')
   store.user = null
 }

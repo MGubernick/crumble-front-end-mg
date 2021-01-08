@@ -13,17 +13,17 @@
 // $button-bg: #009e1d;
 // $black: #000;
 //
-// body {
-//   align-content: center;
-//   align-items: center;
-//   background-color: $body-bg-color;
-//   color: $font-color;
-//   display: flex;
-//   flex-direction: column;
-//   font-family: monospace, sans-serif;
-//   margin: 10px;
-//   padding: 10px;
-// }
+body {
+  align-content: center;
+  align-items: center;
+  background-color: grey;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace, sans-serif;
+  margin: 10px;
+  padding: 10px;
+}
 //
 // button {
 //   background-color: $button-bg;

@@ -28,25 +28,60 @@ const onMyIndexSuccess = function (response) {
   myRecipes.forEach(function (currentRecipe) {
     const currentRecipeHTML = (`
       <div>
-      <h5>Recipe Name: ${myRecipes.name}</h5>
-      <p>Recipe ID: ${myRecipes._id}</p>
-      <h6>Submitted By: ${myRecipes.author}</h6>
-      <p>Cookie Type: ${myRecipes.cookieType}</p>
+      <h5>Recipe Name: ${currentRecipe.name}</h5>
+      <p>Recipe ID: ${currentRecipe._id}</p>
+      <h6>Submitted By: ${currentRecipe.author}</h6>
+      <p>Cookie Type: ${currentRecipe.cookieType}</p>
       <p>Ingredients Needed:</p>
       <ul>
-        <li>${myRecipes.ingredients}</li>
+        <li>${currentRecipe.ingredients}</li>
       </ul>
-      <p>Baking Directions: ${myRecipes.directions}</p>
+      <p>Baking Directions: ${currentRecipe.directions}</p>
       </div>
       `)
     recipeHTML += currentRecipeHTML
   })
   $('#recipe-display').html(recipeHTML)
-  $('#message').text('Drum Roll Please...Here are all of your recipes!:')
+  $('#recipe-display-header').text('Drum Roll Please...Here are all of your recipes!:')
   $('#after-create-button-click').hide()
+  $('#message').hide()
 }
 
 const onMyIndexFailure = function (error) {
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+}
+
+// index all recipes from all users
+
+const onAllIndexSuccess = function (response) {
+  store.recipe = response.recipe
+  const myRecipes = store.recipe
+  // myRecipes = an array of objects
+  console.log('these are my recipes ', myRecipes)
+  let recipeHTML = ''
+  myRecipes.forEach(function (currentRecipe) {
+    const currentRecipeHTML = (`
+      <div>
+      <h5>Recipe Name: ${currentRecipe.name}</h5>
+      <p>Recipe ID: ${currentRecipe._id}</p>
+      <h6>Submitted By: ${currentRecipe.author}</h6>
+      <p>Cookie Type: ${currentRecipe.cookieType}</p>
+      <p>Ingredients Needed:</p>
+      <ul>
+        <li>${currentRecipe.ingredients}</li>
+      </ul>
+      <p>Baking Directions: ${currentRecipe.directions}</p>
+      </div>
+      `)
+    recipeHTML += currentRecipeHTML
+  })
+  $('#recipe-display').html(recipeHTML)
+  $('#recipe-display-header').text('Drum Roll Please...Here are all of your recipes!:')
+  $('#after-create-button-click').hide()
+  $('#message').hide()
+}
+
+const onAllIndexFailure = function (error) {
   $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
 }
 
@@ -54,5 +89,7 @@ module.exports = {
   onCreateRecipeSuccess: onCreateRecipeSuccess,
   onCreateRecipeFailure: onCreateRecipeFailure,
   onMyIndexSuccess: onMyIndexSuccess,
-  onMyIndexFailure: onMyIndexFailure
+  onMyIndexFailure: onMyIndexFailure,
+  onAllIndexSuccess: onAllIndexSuccess,
+  onAllIndexFailure: onAllIndexFailure
 }

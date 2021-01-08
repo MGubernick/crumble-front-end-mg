@@ -27,7 +27,19 @@ const myRecipeIndex = function (recipeData) {
   })
 }
 
+const recipeIndex = function (recipeData) {
+  return $.ajax({
+    url: config.apiUrl + '/recipes/all',
+    method: 'GET',
+    data: recipeData,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createRecipe: createRecipe,
-  myRecipeIndex: myRecipeIndex
+  myRecipeIndex: myRecipeIndex,
+  recipeIndex: recipeIndex
 }

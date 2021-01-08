@@ -18,6 +18,6 @@ $(() => {
   $('#sign-out').on('click', authEvents.onSignOut)
   $('#create-recipe').on('submit', recipeEvents.onCreateRecipe)
   $('.create-button').on('click', recipeEvents.onShowCreate)
-  $('#index-my-recipes').on('click', recipeEvents.onMyIndex)
-  // $('.all-the-recipes').on('click', recipeEvents.onRecipeIndexAll)
+  $('#all-my-recipes').on('click', recipeEvents.onMyIndex)
+  $('#all-the-recipes').on('click', recipeEvents.onAllIndex)
 })
