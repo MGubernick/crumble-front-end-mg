@@ -8,6 +8,8 @@ const getFormFields = require('./../../../lib/get-form-fields')
 // create functions that will be referenced by event listeners in app.js
 const onShowCreate = function (event) {
   $('#after-create-button-click').show()
+  $('#recipe-display').hide()
+  $('#recipe-display-header').hide()
   $('form').trigger('reset')
 }
 
@@ -43,9 +45,21 @@ const onAllIndex = function (event) {
     .catch(ui.onAllIndexFailure)
 }
 
+const onDestroyIt = function (event) {
+  event.preventDefault()
+
+  const form = event.target
+  const recipeData = getFormFields(form)
+
+  api.destroyRecipe(recipeData)
+    .then(ui.destroyRecipeSuccess)
+    .catch(ui.destroyRecipeFailure)
+}
+
 module.exports = {
   onShowCreate: onShowCreate,
   onCreateRecipe: onCreateRecipe,
   onMyIndex: onMyIndex,
-  onAllIndex: onAllIndex
+  onAllIndex: onAllIndex,
+  onDestroyIt: onDestroyIt
 }

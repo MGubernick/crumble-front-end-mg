@@ -5,8 +5,6 @@ const store = require('./../store.js')
 
 // create a recipe success and failure
 const onCreateRecipeSuccess = function (response) {
-  // $('.click-space').on('click', gameEvents.onSpaceClick)
-  $('#change-password').hide()
   $('#message').text('Created Your Recipe! Let\'s bake!')
   store.recipe = response.recipe
   console.log(store.recipe)
@@ -41,10 +39,12 @@ const onMyIndexSuccess = function (response) {
       `)
     recipeHTML += currentRecipeHTML
   })
+  $('#recipe-display').show()
+  $('#recipe-display-header').show()
   $('#recipe-display').html(recipeHTML)
   $('#recipe-display-header').text('Drum Roll Please...Here are all of your recipes!:')
   $('#after-create-button-click').hide()
-  $('#message').hide()
+  $('#message').text(' ')
 }
 
 const onMyIndexFailure = function (error) {
@@ -75,14 +75,28 @@ const onAllIndexSuccess = function (response) {
       `)
     recipeHTML += currentRecipeHTML
   })
+  $('#recipe-display').show()
+  $('#recipe-display-header').show()
   $('#recipe-display').html(recipeHTML)
-  $('#recipe-display-header').text('Drum Roll Please...Here are all of your recipes!:')
+  $('#recipe-display-header').text('Drum Roll Please...Here are all of the recipes!:')
   $('#after-create-button-click').hide()
-  $('#message').hide()
+  $('#message').text(' ')
 }
 
 const onAllIndexFailure = function (error) {
   $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+}
+
+// destroy a recipe success and failure
+const destroyRecipeSuccess = function () {
+  $('#recipe-display').hide()
+  $('#recipe-display-header').hide()
+  $('#message').text('Recipe Burnt! It\'s gone!')
+  $('form').trigger('reset')
+}
+
+const destroyRecipeFailure = function (error) {
+  $('#message').text('Uh Oh! Your burnt recipe is still here...Error: ' + error.responseJSON.message)
 }
 
 module.exports = {
@@ -91,5 +105,7 @@ module.exports = {
   onMyIndexSuccess: onMyIndexSuccess,
   onMyIndexFailure: onMyIndexFailure,
   onAllIndexSuccess: onAllIndexSuccess,
-  onAllIndexFailure: onAllIndexFailure
+  onAllIndexFailure: onAllIndexFailure,
+  destroyRecipeSuccess: destroyRecipeSuccess,
+  destroyRecipeFailure: destroyRecipeFailure
 }

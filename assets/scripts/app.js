@@ -10,6 +10,7 @@ const recipeEvents = require('./recipe/events.js')
 $(() => {
   $('.after-sign-in').hide()
   $('#after-create-button-click').hide()
+  // $('#message').show()
 
   // event listeners
   $('#sign-up').on('submit', authEvents.onSignUp)
@@ -20,4 +21,5 @@ $(() => {
   $('.create-button').on('click', recipeEvents.onShowCreate)
   $('#all-my-recipes').on('click', recipeEvents.onMyIndex)
   $('#all-the-recipes').on('click', recipeEvents.onAllIndex)
+  $('#delete-recipe').on('submit', recipeEvents.onDestroyIt)
 })

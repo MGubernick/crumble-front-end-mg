@@ -15,7 +15,7 @@
       <h1 class="game-name">Crumble!</h1>
       <h6 class="tagline">Lets Find A Cookie That Makes You Crumble!</h6>
       <br>
-      <h1 id='message'></h1>
+      <h1 id="message"></h1>
 
   <div class="before-sign-in">
     <form id="sign-in">
@@ -40,6 +40,12 @@
       <button type="submit" name="button">Change My Password!</button>
     </form>
 
+    <form id="delete-recipe">
+      <input type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+
+      <button class="destroy" type="submit" name="button">Delete It!</button>
+    </form>
+
     <div id="index-recipes">
       <button id="all-the-recipes" type="button">Checkout All The Recipes</button>
 
@@ -56,7 +62,7 @@
   </div>
 
   <div id="after-create-button-click">
-    <form id="create-recipe" action="index.html" method="post">
+    <form id="create-recipe">
       <input type="text" name="recipe[name]" placeholder="Recipe Name" />
       <br>
       <input type="text" name="recipe[author]" placeholder="Recipe Auther" />

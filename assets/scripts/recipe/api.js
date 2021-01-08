@@ -38,8 +38,20 @@ const recipeIndex = function (recipeData) {
   })
 }
 
+// api call for deleting a recipe
+const destroyRecipe = function (recipeData) {
+  return $.ajax({
+    url: config.apiUrl + '/recipes/' + recipeData.recipe._id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createRecipe: createRecipe,
   myRecipeIndex: myRecipeIndex,
-  recipeIndex: recipeIndex
+  recipeIndex: recipeIndex,
+  destroyRecipe: destroyRecipe
 }
