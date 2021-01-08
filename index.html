@@ -13,7 +13,7 @@
     </head>
     <body>
       <h1 class="game-name">Crumble!</h1>
-      <h6 class="my-name">By Matt G.</h6>
+      <h6 class="tagline">Lets Find A Cookie That Makes You Crumble!</h6>
       <br>
       <h1 id='message'></h1>
 
@@ -40,24 +40,43 @@
       <button type="submit" name="button">Change My Password!</button>
     </form>
 
+    <div id="index-all-button">
+      <button class="all-the-recipes" type="button">Checkout All The Recipes</button>
+    </div>
+    <div id="index-my-recipes">
+      <button class="all-my-recipes" type="button">Checkout All My Recipes</button>
+    </div>
+
     <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
-  </div>
 
-  <div id="index-all-button">
+    <div class="create-button">
+      <button class="create" type="button">Create A Recipe!</button>
+    </div>
 
-    <button class="all-the-recipes" type="button">Checkout All The Recipes</button>
-
-  </div>
-
-  <div id="index-my-recipes">
-
-    <button class="all-my-recipes" type="button">Checkout All My Recipes</button>
 
   </div>
 
+  <div id="after-create-button-click">
+    <form id="create-recipe" action="index.html" method="post">
+      <input type="text" name="recipe[name]" placeholder="Recipe Name" />
+      <br>
+      <input type="text" name="recipe[author]" placeholder="Recipe Auther" />
+      <br>
+      <input type="text" name="recipe[cookieType]" placeholder="Cookie Type (ex: Chocolate Chip, Shortbread...)" />
+      <br>
+      <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Ingredients Here"></textarea>
+      <br>
+      <textarea class="directions" name="recipe[directions]" rows="4" cols="60" placeholder="Baking Directions Here"></textarea>
+      <button class="crumble-button" type="submit">Crumble My Recipe!</button>
+    </form>
+  </div>
+
+
+<div id="recipe-display-header">
+</div>
   <div id="recipe-display">
-    <p class="list-recipes"></p>
   </div>
+
 
 
 

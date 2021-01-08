@@ -43,6 +43,7 @@ const signOutSuccess = function () {
   $('#message').text('Signed Out Successfully! See Ya Next Time!')
   $('.before-sign-in').show()
   $('.after-sign-in').hide()
+  $('#after-create-button-click').hide()
   $('form').trigger('reset')
   store.user = null
 }
