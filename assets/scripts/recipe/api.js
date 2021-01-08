@@ -49,9 +49,33 @@ const destroyRecipe = function (recipeData) {
   })
 }
 
+const showOneRecipe = function (recipeData) {
+  return $.ajax({
+    url: config.apiUrl + '/recipes/' + recipeData.recipe._id,
+    method: 'GET',
+    data: recipeData,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
+const updateRecipe = function (recipeData) {
+  return $.ajax({
+    url: config.apiUrl + '/recipes/' + store.recipe._id,
+    method: 'PATCH',
+    data: recipeData,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createRecipe: createRecipe,
   myRecipeIndex: myRecipeIndex,
   recipeIndex: recipeIndex,
-  destroyRecipe: destroyRecipe
+  destroyRecipe: destroyRecipe,
+  showOneRecipe: showOneRecipe,
+  updateRecipe: updateRecipe
 }

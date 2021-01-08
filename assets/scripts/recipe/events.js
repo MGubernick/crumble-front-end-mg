@@ -4,12 +4,22 @@
 const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../../lib/get-form-fields')
+// const store = require('./../store.js')
 
 // create functions that will be referenced by event listeners in app.js
 const onShowCreate = function (event) {
   $('#after-create-button-click').show()
   $('#recipe-display').hide()
   $('#recipe-display-header').hide()
+  $('.update-form').hide()
+  $('form').trigger('reset')
+}
+
+const onShowUpdate = function (event) {
+  $('.update-form').show()
+  $('#recipe-display').hide()
+  $('#recipe-display-header').hide()
+  $('#after-create-button-click').hide()
   $('form').trigger('reset')
 }
 
@@ -56,10 +66,35 @@ const onDestroyIt = function (event) {
     .catch(ui.destroyRecipeFailure)
 }
 
+const onShowIt = function (event) {
+  event.preventDefault()
+
+  const form = event.target
+  const recipeData = getFormFields(form)
+
+  api.showOneRecipe(recipeData)
+    .then(ui.showOneRecipeSuccess)
+    .catch(ui.showOneRecipeFailure)
+}
+
+const onUpdateOne = function (event) {
+  event.preventDefault()
+  // console.log(store)
+  const form = event.target
+  const recipeData = getFormFields(form)
+
+  api.updateRecipe(recipeData)
+    .then(ui.updateRecipeSuccess)
+    .catch(ui.updateRecipeFailure)
+}
+
 module.exports = {
   onShowCreate: onShowCreate,
   onCreateRecipe: onCreateRecipe,
   onMyIndex: onMyIndex,
   onAllIndex: onAllIndex,
-  onDestroyIt: onDestroyIt
+  onDestroyIt: onDestroyIt,
+  onShowIt: onShowIt,
+  onShowUpdate: onShowUpdate,
+  onUpdateOne: onUpdateOne
 }
