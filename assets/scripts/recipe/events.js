@@ -9,10 +9,21 @@ const getFormFields = require('./../../../lib/get-form-fields')
 // create functions that will be referenced by event listeners in app.js
 const onShowCreate = function (event) {
   $('#after-create-button-click').show()
+  $('#create-recipe').show()
+  $('#change-password').hide()
+  $('.change-pw-button').show()
   $('#recipe-display').hide()
   $('#recipe-display-header').hide()
   $('.update-form').hide()
+  $('#index-recipes').hide()
+  $('#delete-recipe').hide()
+  $('#find-recipe').hide()
   $('form').trigger('reset')
+}
+
+const onShowChangePass = function (event) {
+  $('#change-password').show()
+  $('.change-pw-button').hide()
 }
 
 const onShowUpdate = function (event) {
@@ -20,7 +31,22 @@ const onShowUpdate = function (event) {
   $('#recipe-display').hide()
   $('#recipe-display-header').hide()
   $('#after-create-button-click').hide()
+  $('#find-recipe').hide()
+  $('#delete-recipe').hide()
   $('form').trigger('reset')
+}
+
+const onBackToMenu = function (event) {
+  $('#after-create-button-click').hide()
+  $('#index-recipes').show()
+  $('.change-pw-button').show()
+  $('#change-password').hide()
+  $('#find-recipe').hide()
+  $('#delete-recipe').hide()
+  $('#show-update').hide()
+  $('.update-form').hide()
+  $('#recipe-display').hide()
+  $('#recipe-display-header').hide()
 }
 
 const onCreateRecipe = function (event) {
@@ -96,5 +122,7 @@ module.exports = {
   onDestroyIt: onDestroyIt,
   onShowIt: onShowIt,
   onShowUpdate: onShowUpdate,
-  onUpdateOne: onUpdateOne
+  onUpdateOne: onUpdateOne,
+  onShowChangePass: onShowChangePass,
+  onBackToMenu: onBackToMenu
 }

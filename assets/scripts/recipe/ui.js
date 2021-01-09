@@ -7,8 +7,10 @@ const store = require('./../store.js')
 const onCreateRecipeSuccess = function (response) {
   $('#message').text('Created Your Recipe! Let\'s bake!')
   store.recipe = response.recipe
-  console.log(store.recipe)
+  // console.log(store.recipe)
   $('.create-button').show()
+  $('#index-recipes').show()
+  $('#create-recipe').hide()
   $('form').trigger('reset')
 }
 
@@ -20,10 +22,16 @@ const onCreateRecipeFailure = function (error) {
 const onMyIndexSuccess = function (response) {
   store.recipe = response.recipe
   const myRecipes = store.recipe
+  console.log('these are all of my recipes ', myRecipes)
   // myRecipes = an array of objects
-  console.log('these are my recipes ', myRecipes)
+  // console.log('these are my recipes ', myRecipes)
   let recipeHTML = ''
   myRecipes.forEach(function (currentRecipe) {
+    let ingredientHTML = ''
+    currentRecipe.ingredients.forEach(ing => {
+      ingredientHTML += `<li>${ing}</li>`
+    })
+    // console.log('current recipe ingredients', currentRecipe.ingredients)
     const currentRecipeHTML = (`
       <div>
       <h5>Recipe Name: ${currentRecipe.name}</h5>
@@ -32,7 +40,7 @@ const onMyIndexSuccess = function (response) {
       <p>Cookie Type: ${currentRecipe.cookieType}</p>
       <p>Ingredients Needed:</p>
       <ul>
-        <li>${currentRecipe.ingredients}</li>
+        ${ingredientHTML}
       </ul>
       <p>Baking Directions: ${currentRecipe.directions}</p>
       </div>
@@ -47,6 +55,8 @@ const onMyIndexSuccess = function (response) {
   $('#show-update').hide()
   $('.update-form').hide()
   $('#find-recipe').show()
+  $('#delete-recipe').show()
+  $('#find-recipe').show()
   $('#message').text(' ')
 }
 
@@ -57,13 +67,18 @@ const onMyIndexFailure = function (error) {
 // index all recipes from all users
 
 const onAllIndexSuccess = function (response) {
-  console.log(response)
+  // console.log(response)
   store.recipe = response.recipe
   const myRecipes = store.recipe
   // myRecipes = an array of objects
-  console.log('these are my recipes ', myRecipes)
+  console.log('these are all of the recipes ', myRecipes)
   let recipeHTML = ''
   myRecipes.forEach(function (currentRecipe) {
+    let ingredientHTML = ''
+    currentRecipe.ingredients.forEach(ing => {
+      ingredientHTML += `<li>${ing}</li>`
+    })
+    // console.log('current recipe ingredients', currentRecipe.ingredients)
     const currentRecipeHTML = (`
       <div>
       <h5>Recipe Name: ${currentRecipe.name}</h5>
@@ -72,7 +87,7 @@ const onAllIndexSuccess = function (response) {
       <p>Cookie Type: ${currentRecipe.cookieType}</p>
       <p>Ingredients Needed:</p>
       <ul>
-        <li>${currentRecipe.ingredients}</li>
+        ${ingredientHTML}
       </ul>
       <p>Baking Directions: ${currentRecipe.directions}</p>
       </div>
@@ -86,6 +101,8 @@ const onAllIndexSuccess = function (response) {
   $('#after-create-button-click').hide()
   $('#show-update').hide()
   $('.update-form').hide()
+  $('#find-recipe').show()
+  $('#delete-recipe').show()
   $('#find-recipe').show()
   $('#message').text(' ')
 }
@@ -109,6 +126,10 @@ const destroyRecipeFailure = function (error) {
 const showOneRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const thisRecipe = store.recipe
+  let ingredientHTML = ''
+  thisRecipe.ingredients.forEach(ing => {
+    ingredientHTML += `<li>${ing}</li>`
+  })
   let recipeHTML = thisRecipe
   recipeHTML = (`
       <div>
@@ -118,7 +139,7 @@ const showOneRecipeSuccess = function (response) {
       <p>Cookie Type: ${thisRecipe.cookieType}</p>
       <p>Ingredients Needed:</p>
       <ul>
-        <li>${thisRecipe.ingredients}</li>
+        ${ingredientHTML}
       </ul>
       <p>Baking Directions: ${thisRecipe.directions}</p>
       </div>
@@ -130,7 +151,8 @@ const showOneRecipeSuccess = function (response) {
   $('#recipe-display-header').text('Hot from the oven, here is your recipe!:')
   $('#after-create-button-click').hide()
   $('.after-find-one').show()
-  // $('#message').text(' ')
+  $('#delete-recipe').show()
+  $('#message').text(' ')
   $('form').trigger('reset')
 }
 
@@ -138,9 +160,14 @@ const showOneRecipeFailure = function (error) {
   $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
 }
 
+// Figure out why updatedRecipe.ingredients.forEach isn't a function....
 const updateRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const updatedRecipe = store.recipe
+  let ingredientHTML = ''
+  updatedRecipe.ingredients.forEach(ing => {
+    ingredientHTML += `<li>${ing}</li>`
+  })
   let recipeHTML = updatedRecipe
   recipeHTML = (`
       <div>
@@ -150,7 +177,7 @@ const updateRecipeSuccess = function (response) {
       <p>Cookie Type: ${updatedRecipe.cookieType}</p>
       <p>Ingredients Needed:</p>
       <ul>
-        <li>${updatedRecipe.ingredients}</li>
+        ${ingredientHTML}
       </ul>
       <p>Baking Directions: ${updatedRecipe.directions}</p>
       </div>
@@ -160,11 +187,12 @@ const updateRecipeSuccess = function (response) {
   $('#recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
   $('#recipe-display').html(recipeHTML)
   $('#update-recipe').hide()
+  $('#message').text(' ')
   $('form').trigger('reset')
 }
 
 const updateRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON.message)
+  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON)
 }
 
 module.exports = {

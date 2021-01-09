@@ -23,6 +23,15 @@ const signInSuccess = function (response) {
   $('#find-recipe').hide()
   $('.update-form').hide()
   $('#show-update').hide()
+  $('#delete-recipe').hide()
+  $('#change-password').hide()
+  // $('#after-create-button-click').show()
+  $('index-recipes').show()
+  $('#recipe-display').show()
+  $('#recipe-display').text('')
+  $('#recipe-display-header').show()
+  $('#recipe-display-header').text('')
+  $('.change-pw-button').show()
   $('.after-sign-in').show()
   $('form').trigger('reset')
 }
@@ -34,6 +43,8 @@ const signInFailure = function (error) {
 // change password success and failure
 const changePasswordSuccess = function () {
   $('#message').text('Changed Your Password Successfully!')
+  $('.change-pw-button').show()
+  $('#change-password').hide()
   $('form').trigger('reset')
 }
 

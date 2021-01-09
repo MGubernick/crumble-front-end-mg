@@ -5,6 +5,9 @@ const config = require('./../config.js')
 const store = require('./../store.js')
 
 const createRecipe = function (recipeData) {
+  const newIngArr = recipeData.recipe.ingredients.split(',')
+  recipeData.recipe.ingredients = newIngArr
+  // console.log(recipeData)
   return $.ajax({
     url: config.apiUrl + '/recipes',
     method: 'POST',
@@ -61,6 +64,8 @@ const showOneRecipe = function (recipeData) {
 }
 
 const updateRecipe = function (recipeData) {
+  const newIngArr = recipeData.recipe.ingredients.split(',')
+  recipeData.recipe.ingredients = newIngArr
   return $.ajax({
     url: config.apiUrl + '/recipes/' + store.recipe._id,
     method: 'PATCH',
