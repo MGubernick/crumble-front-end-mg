@@ -12,10 +12,13 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+      <div class="header">
+
       <h1 class="app-name">Crumble!</h1>
       <h6 class="tagline">Lets Find A Cookie That Makes Your Heart Crumble!</h6>
       <br>
-      <h1 id="message"></h1>
+      <h2 id="message"></h2>
+      </div>
 
   <div class="before-sign-in">
     <form id="sign-in">
@@ -33,6 +36,8 @@
   </div>
 
   <div class="after-sign-in">
+    <div class="top-stuff">
+
     <button class="change-pw-button" type="button" name="button">Change Password</button>
 
     <form id="change-password">
@@ -93,6 +98,8 @@
         <br>
         <input type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" />
         <br>
+        <small>Separate each ingredient by a comma!</small>
+        <br>
         <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Updated Ingredients Here"></textarea>
         <br>
         <textarea class="directions" name="recipe[directions]" rows="4" cols="60" placeholder="Updated Baking Directions Here"></textarea>
@@ -102,10 +109,15 @@
   </div>
 
 <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
-
-<div id="recipe-display-header">
 </div>
-<div id="recipe-display">
+
+<div class="bottom-stuff">
+
+<div class="recipe-display-header">
+</div>
+<div class="recipe-display">
+</div>
+
 </div>
 
 </div>

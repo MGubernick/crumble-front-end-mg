@@ -12,12 +12,13 @@ const onShowCreate = function (event) {
   $('#create-recipe').show()
   $('#change-password').hide()
   $('.change-pw-button').show()
-  $('#recipe-display').hide()
-  $('#recipe-display-header').hide()
+  $('.recipe-display').hide()
+  $('.recipe-display-header').hide()
   $('.update-form').hide()
   $('#index-recipes').hide()
   $('#delete-recipe').hide()
   $('#find-recipe').hide()
+  $('#show-update').hide()
   $('form').trigger('reset')
 }
 
@@ -28,8 +29,8 @@ const onShowChangePass = function (event) {
 
 const onShowUpdate = function (event) {
   $('.update-form').show()
-  $('#recipe-display').hide()
-  $('#recipe-display-header').hide()
+  $('.recipe-display').hide()
+  $('.recipe-display-header').hide()
   $('#after-create-button-click').hide()
   $('#find-recipe').hide()
   $('#delete-recipe').hide()
@@ -45,8 +46,8 @@ const onBackToMenu = function (event) {
   $('#delete-recipe').hide()
   $('#show-update').hide()
   $('.update-form').hide()
-  $('#recipe-display').hide()
-  $('#recipe-display-header').hide()
+  $('.recipe-display').hide()
+  $('.recipe-display-header').hide()
 }
 
 const onCreateRecipe = function (event) {

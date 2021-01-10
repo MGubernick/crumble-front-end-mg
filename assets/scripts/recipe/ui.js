@@ -33,24 +33,26 @@ const onMyIndexSuccess = function (response) {
     })
     // console.log('current recipe ingredients', currentRecipe.ingredients)
     const currentRecipeHTML = (`
-      <div>
-      <h5>Recipe Name: ${currentRecipe.name}</h5>
-      <p>Recipe ID: ${currentRecipe._id}</p>
-      <h6>Submitted By: ${currentRecipe.author}</h6>
-      <p>Cookie Type: ${currentRecipe.cookieType}</p>
-      <p>Ingredients Needed:</p>
+      <br>
+      <div class="each-response">
+      <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+      <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
       <ul>
         ${ingredientHTML}
       </ul>
-      <p>Baking Directions: ${currentRecipe.directions}</p>
+      <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
       </div>
+      <br>
       `)
     recipeHTML += currentRecipeHTML
   })
-  $('#recipe-display').show()
-  $('#recipe-display-header').show()
-  $('#recipe-display').html(recipeHTML)
-  $('#recipe-display-header').text('Drum Roll Please...Here are all of your recipes!:')
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
+  $('.recipe-display').html(recipeHTML)
+  $('.recipe-display-header').text(`Drum Roll Please...Here are all ${myRecipes.length} of your recipes!:`)
   $('#after-create-button-click').hide()
   $('#show-update').hide()
   $('.update-form').hide()
@@ -80,24 +82,26 @@ const onAllIndexSuccess = function (response) {
     })
     // console.log('current recipe ingredients', currentRecipe.ingredients)
     const currentRecipeHTML = (`
-      <div>
-      <h5>Recipe Name: ${currentRecipe.name}</h5>
-      <p>Recipe ID: ${currentRecipe._id}</p>
-      <h6>Submitted By: ${currentRecipe.author}</h6>
-      <p>Cookie Type: ${currentRecipe.cookieType}</p>
-      <p>Ingredients Needed:</p>
+      <br>
+      <div class="each-response">
+      <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+      <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
       <ul>
         ${ingredientHTML}
       </ul>
-      <p>Baking Directions: ${currentRecipe.directions}</p>
+      <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
       </div>
+      <br>
       `)
     recipeHTML += currentRecipeHTML
   })
-  $('#recipe-display').show()
-  $('#recipe-display-header').show()
-  $('#recipe-display').html(recipeHTML)
-  $('#recipe-display-header').text('Drum Roll Please...Here are all of the recipes!:')
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
+  $('.recipe-display').html(recipeHTML)
+  $('.recipe-display-header').text(`Drum Roll Please...Here are all ${myRecipes.length} of the recipes!:`)
   $('#after-create-button-click').hide()
   $('#show-update').hide()
   $('.update-form').hide()
@@ -113,8 +117,8 @@ const onAllIndexFailure = function (error) {
 
 // destroy a recipe success and failure
 const destroyRecipeSuccess = function () {
-  $('#recipe-display').hide()
-  $('#recipe-display-header').hide()
+  $('.recipe-display').hide()
+  $('.recipe-display-header').hide()
   $('#message').text('Recipe Burnt! It\'s gone!')
   $('form').trigger('reset')
 }
@@ -132,23 +136,25 @@ const showOneRecipeSuccess = function (response) {
   })
   let recipeHTML = thisRecipe
   recipeHTML = (`
-      <div>
-      <h5>Recipe Name: ${thisRecipe.name}</h5>
-      <p>Recipe ID: ${thisRecipe._id}</p>
-      <h6>Submitted By: ${thisRecipe.author}</h6>
-      <p>Cookie Type: ${thisRecipe.cookieType}</p>
-      <p>Ingredients Needed:</p>
+      <br>
+      <div class="each-response">
+      <h4><b>Recipe Name:</b> ${thisRecipe.name}</h4>
+      <p><b>Recipe ID:</b> ${thisRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${thisRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${thisRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
       <ul>
         ${ingredientHTML}
       </ul>
-      <p>Baking Directions: ${thisRecipe.directions}</p>
+      <p><b>Baking Directions:</b> ${thisRecipe.directions}</p>
       </div>
+      <br>
       `)
-  $('#recipe-display').show()
-  $('#recipe-display-header').show()
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
   $('#show-update').show()
-  $('#recipe-display').html(recipeHTML)
-  $('#recipe-display-header').text('Hot from the oven, here is your recipe!:')
+  $('.recipe-display').html(recipeHTML)
+  $('.recipe-display-header').text('Hot from the oven, here is your recipe!:')
   $('#after-create-button-click').hide()
   $('.after-find-one').show()
   $('#delete-recipe').show()
@@ -170,22 +176,24 @@ const updateRecipeSuccess = function (response) {
   })
   let recipeHTML = updatedRecipe
   recipeHTML = (`
-      <div>
-      <h5>Recipe Name: ${updatedRecipe.name}</h5>
-      <p>Recipe ID: ${updatedRecipe._id}</p>
-      <h6>Submitted By: ${updatedRecipe.author}</h6>
-      <p>Cookie Type: ${updatedRecipe.cookieType}</p>
-      <p>Ingredients Needed:</p>
+      <br>
+      <div class="each-response">
+      <h4><b>Recipe Name:</b> ${updatedRecipe.name}</h4>
+      <p><b>Recipe ID:</b> ${updatedRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${updatedRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${updatedRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
       <ul>
         ${ingredientHTML}
       </ul>
-      <p>Baking Directions: ${updatedRecipe.directions}</p>
+      <p><b>Baking Directions:</b> ${updatedRecipe.directions}</p>
       </div>
+      <br>
       `)
-  $('#recipe-display').show()
-  $('#recipe-display-header').show()
-  $('#recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
-  $('#recipe-display').html(recipeHTML)
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
+  $('.recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
+  $('.recipe-display').html(recipeHTML)
   $('#update-recipe').hide()
   $('#message').text(' ')
   $('form').trigger('reset')
