@@ -11,11 +11,12 @@ const onCreateRecipeSuccess = function (response) {
   $('.create-button').show()
   $('#index-recipes').show()
   $('#create-recipe').hide()
+  $('.change-pw-button').hide()
   $('form').trigger('reset')
 }
 
 const onCreateRecipeFailure = function (error) {
-  $('#message').text('Uh Oh..Something went wrong, take a look. Error: ' + error.responseJSON.message)
+  $('#message').text('Uh Oh..Something went wrong, take a look. Error: ' + error.responseJSON)
 }
 
 // index all of a users recipes success and Failure
@@ -56,14 +57,16 @@ const onMyIndexSuccess = function (response) {
   $('#after-create-button-click').hide()
   $('#show-update').hide()
   $('.update-form').hide()
-  $('#find-recipe').show()
-  $('#delete-recipe').show()
-  $('#find-recipe').show()
+  $('#find-recipe-mine').show()
+  $('#find-recipe-any').hide()
+  $('.change-pw-button').hide()
+  $('.destroy-recipe').show()
+  $('#find-recipe-mine').show()
   $('#message').text(' ')
 }
 
 const onMyIndexFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
 }
 
 // index all recipes from all users
@@ -105,14 +108,15 @@ const onAllIndexSuccess = function (response) {
   $('#after-create-button-click').hide()
   $('#show-update').hide()
   $('.update-form').hide()
-  $('#find-recipe').show()
-  $('#delete-recipe').show()
-  $('#find-recipe').show()
+  $('#find-recipe-mine').hide()
+  $('#find-recipe-any').show()
+  $('#delete-recipe').hide()
+  $('.change-pw-button').hide()
   $('#message').text(' ')
 }
 
 const onAllIndexFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
 }
 
 // destroy a recipe success and failure
@@ -124,7 +128,7 @@ const destroyRecipeSuccess = function () {
 }
 
 const destroyRecipeFailure = function (error) {
-  $('#message').text('Uh Oh! Your burnt recipe is still here...Error: ' + error.responseJSON.message)
+  $('#message').text('Uh Oh! Your burnt recipe is still here...Error: ' + error.responseJSON)
 }
 
 const showOneRecipeSuccess = function (response) {
@@ -156,6 +160,7 @@ const showOneRecipeSuccess = function (response) {
   $('.recipe-display').html(recipeHTML)
   $('.recipe-display-header').text('Hot from the oven, here is your recipe!:')
   $('#after-create-button-click').hide()
+  $('.change-pw-button').hide()
   $('.after-find-one').show()
   $('#delete-recipe').show()
   $('#message').text(' ')
@@ -163,7 +168,48 @@ const showOneRecipeSuccess = function (response) {
 }
 
 const showOneRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
+}
+
+// show anyone's recipe success and failure functions
+const showAnyRecipeSuccess = function (response) {
+  store.recipe = response.recipe
+  const thisRecipe = store.recipe
+  let ingredientHTML = ''
+  thisRecipe.ingredients.forEach(ing => {
+    ingredientHTML += `<li>${ing}</li>`
+  })
+  let recipeHTML = thisRecipe
+  recipeHTML = (`
+      <br>
+      <div class="each-response">
+      <h4><b>Recipe Name:</b> ${thisRecipe.name}</h4>
+      <p><b>Recipe ID:</b> ${thisRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${thisRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${thisRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
+      <ul>
+        ${ingredientHTML}
+      </ul>
+      <p><b>Baking Directions:</b> ${thisRecipe.directions}</p>
+      </div>
+      <br>
+      `)
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
+  // $('#show-update').show()
+  $('.recipe-display').html(recipeHTML)
+  $('.recipe-display-header').text('Hot from the oven, here is the recipe!:')
+  $('#after-create-button-click').hide()
+  $('.after-find-one').show()
+  $('#delete-recipe').hide()
+  $('.change-pw-button').hide()
+  $('#message').text(' ')
+  $('form').trigger('reset')
+}
+
+const showAnyRecipeFailure = function (error) {
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
 }
 
 // Figure out why updatedRecipe.ingredients.forEach isn't a function....
@@ -195,6 +241,7 @@ const updateRecipeSuccess = function (response) {
   $('.recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
   $('.recipe-display').html(recipeHTML)
   $('#update-recipe').hide()
+  $('.change-pw-button').hide()
   $('#message').text(' ')
   $('form').trigger('reset')
 }
@@ -215,5 +262,7 @@ module.exports = {
   showOneRecipeSuccess: showOneRecipeSuccess,
   showOneRecipeFailure: showOneRecipeFailure,
   updateRecipeSuccess: updateRecipeSuccess,
-  updateRecipeFailure: updateRecipeFailure
+  updateRecipeFailure: updateRecipeFailure,
+  showAnyRecipeSuccess: showAnyRecipeSuccess,
+  showAnyRecipeFailure: showAnyRecipeFailure
 }

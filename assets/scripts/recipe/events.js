@@ -11,13 +11,14 @@ const onShowCreate = function (event) {
   $('#after-create-button-click').show()
   $('#create-recipe').show()
   $('#change-password').hide()
-  $('.change-pw-button').show()
+  $('.change-pw-button').hide()
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
   $('.update-form').hide()
   // $('#index-recipes').hide()
   $('#delete-recipe').hide()
-  $('#find-recipe').hide()
+  $('#find-recipe-mine').hide()
+  $('#find-recipe-any').hide()
   $('#show-update').hide()
   $('form').trigger('reset')
 }
@@ -32,7 +33,9 @@ const onShowUpdate = function (event) {
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
   $('#after-create-button-click').hide()
-  $('#find-recipe').hide()
+  $('.change-pw-button').hide()
+  $('#find-recipe-mine').hide()
+  $('#find-recipe-any').hide()
   $('#delete-recipe').hide()
   $('form').trigger('reset')
 }
@@ -42,13 +45,18 @@ const onBackToMenu = function (event) {
   $('#index-recipes').show()
   $('.change-pw-button').show()
   $('#change-password').hide()
-  $('#find-recipe').hide()
+  $('#find-recipe-mine').hide()
+  $('#find-recipe-any').hide()
   $('#delete-recipe').hide()
   $('#show-update').hide()
   $('.update-form').hide()
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
   $('#message').text('Welcome Back To The Menu:')
+}
+
+const onDestroyButton = function (event) {
+  $('#delete-recipe').show()
 }
 
 const onCreateRecipe = function (event) {
@@ -105,6 +113,17 @@ const onShowIt = function (event) {
     .catch(ui.showOneRecipeFailure)
 }
 
+const onShowAny = function (event) {
+  event.preventDefault()
+
+  const form = event.target
+  const recipeData = getFormFields(form)
+
+  api.showAnyRecipe(recipeData)
+    .then(ui.showAnyRecipeSuccess)
+    .then(ui.showAnyRecipeFailure)
+}
+
 const onUpdateOne = function (event) {
   event.preventDefault()
   // console.log(store)
@@ -126,5 +145,7 @@ module.exports = {
   onShowUpdate: onShowUpdate,
   onUpdateOne: onUpdateOne,
   onShowChangePass: onShowChangePass,
-  onBackToMenu: onBackToMenu
+  onBackToMenu: onBackToMenu,
+  onShowAny: onShowAny,
+  onDestroyButton: onDestroyButton
 }

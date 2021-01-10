@@ -63,6 +63,17 @@ const showOneRecipe = function (recipeData) {
   })
 }
 
+const showAnyRecipe = function (recipeData) {
+  return $.ajax({
+    url: config.apiUrl + '/recipes/any/' + recipeData.recipe._id,
+    method: 'GET',
+    data: recipeData,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 const updateRecipe = function (recipeData) {
   const newIngArr = recipeData.recipe.ingredients.split(',')
   recipeData.recipe.ingredients = newIngArr
@@ -82,5 +93,6 @@ module.exports = {
   recipeIndex: recipeIndex,
   destroyRecipe: destroyRecipe,
   showOneRecipe: showOneRecipe,
-  updateRecipe: updateRecipe
+  updateRecipe: updateRecipe,
+  showAnyRecipe: showAnyRecipe
 }

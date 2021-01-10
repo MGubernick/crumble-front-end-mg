@@ -20,7 +20,8 @@ const signInSuccess = function (response) {
   store.user = response.user
   // console.log('store after is: ', store)
   $('.before-sign-in').hide()
-  $('#find-recipe').hide()
+  $('#find-recipe-mine').hide()
+  $('#find-recipe-any').hide()
   $('.update-form').hide()
   $('#show-update').hide()
   $('#delete-recipe').hide()

@@ -46,19 +46,24 @@
       <button type="submit" name="button">Change My Password!</button>
     </form>
 
-    <form id="delete-recipe">
-      <input type="text" name="recipe[_id]" placeholder="Recipe ID here" />
-
-      <button class="destroy" type="submit" name="button">Delete It!</button>
-    </form>
-
     <div id="index-recipes">
       <button id="all-the-recipes" type="button">Checkout All The Recipes</button>
 
       <button id="all-my-recipes" type="button">Checkout All My Recipes</button>
     </div>
 
-    <form id="find-recipe">
+    <form id="delete-recipe">
+      <input type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+
+      <button class="destroy" type="submit" name="button">Delete It!</button>
+    </form>
+
+    <form id="find-recipe-mine">
+      <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+      <button type="submit">Find My Recipe</button>
+    </form>
+
+    <form id="find-recipe-any">
       <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
       <button type="submit">Find This Recipe</button>
     </form>
@@ -103,28 +108,47 @@
   </div>
 
   <div class="after-find-one">
-    <button id="show-update" type="button" name="button">Update</button>
+    <button id="show-update" type="button" name="button" data-toggle="modal" data-target="#updateRecipeModal">Update</button>
     <div class="update-form">
-      <form id="update-recipe">
-        <!-- <input type="text" name="recipe[_id]" placeholder="Recipe ID here" /> -->
-        <!-- <br> -->
-        <input type="text" name="recipe[name]" placeholder="Updated Recipe Name" />
-        <br>
-        <input type="text" name="recipe[author]" placeholder="Updated Recipe Auther" />
-        <br>
-        <input type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" />
-        <br>
-        <small>Separate each ingredient by a comma!</small>
-        <br>
-        <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Updated Ingredients Here"></textarea>
-        <br>
-        <textarea class="directions" name="recipe[directions]" rows="4" cols="60" placeholder="Updated Baking Directions Here"></textarea>
-        <button type="submit">Make A Change!</button>
-      </form>
+<!-- Modal -->
+<div class="modal fade" id="updateRecipeModal" tabindex="-1" aria-labelledby="updateRecipeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateRecipeModalLabel">Update The Recipe!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="update-recipe">
+          <!-- <input type="text" name="recipe[_id]" placeholder="Recipe ID here" /> -->
+          <!-- <br> -->
+          <input type="text" name="recipe[name]" placeholder="Updated Recipe Name" />
+          <br>
+          <input type="text" name="recipe[author]" placeholder="Updated Recipe Auther" />
+          <br>
+          <input type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" />
+          <br>
+          <small>Separate each ingredient by a comma!</small>
+          <br>
+          <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Updated Ingredients Here"></textarea>
+          <br>
+          <textarea class="directions" name="recipe[directions]" rows="4" cols="60" placeholder="Updated Baking Directions Here"></textarea>
+          <button type="button" class="closeButton" data-dismiss="modal">Close</button>
+          <button class="crumble-update-button" type="submit" data-toggle="modal" data-target="#updateRecipeModal">Make A Change!</button>
+        </form>
+      </div>
     </div>
   </div>
+</div>
+    </div>
+  </div>
+<div class="destroy-sign-out">
+  <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
+  <button class="destroy-recipe" type="button" name="button">Delete This Recipe!</button>
+</div>
 
-<button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
 </div>
 
 <div class="bottom-stuff">
