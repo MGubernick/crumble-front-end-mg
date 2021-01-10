@@ -30,7 +30,7 @@ $(() => {
   $('#update-recipe').on('submit', recipeEvents.onUpdateOne)
   $('.change-pw-button').on('click', recipeEvents.onShowChangePass)
   $('.back-button').on('click', recipeEvents.onBackToMenu)
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
+  $('#createRecipeModal').on('shown.bs.modal', function () {
+    $('#createRecipeModal').trigger('focus')
   })
 })

@@ -21,7 +21,6 @@ body {
   padding: 10px;
 }
 
-
 button {
   background-color: $button-bg;
   border-radius: 10px;
@@ -79,4 +78,13 @@ h1 {
 .recipe-display-header {
   font-family: 'Love Ya Like A Sister', cursive, monospace, sans-serif;
   font-size: 30px;
+}
+
+.modal-header {
+  background-color: $body-bg-color;
+  font-family: 'Love Ya Like A Sister', cursive, monospace, sans-serif;
+}
+
+.modal-body {
+  background-color: $recipe-bg-color;
 }

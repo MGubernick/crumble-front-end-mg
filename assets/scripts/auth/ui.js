@@ -15,7 +15,7 @@ const signUpFailure = function (error) {
 
 // Sign In Success and Failure functions.
 const signInSuccess = function (response) {
-  $('#message').text('Sign In Successful! Make Some Cookies!')
+  $('#message').text('Sign In Successful! Check Out The Menu:')
 
   store.user = response.user
   // console.log('store after is: ', store)

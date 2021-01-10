@@ -15,7 +15,7 @@ const onShowCreate = function (event) {
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
   $('.update-form').hide()
-  $('#index-recipes').hide()
+  // $('#index-recipes').hide()
   $('#delete-recipe').hide()
   $('#find-recipe').hide()
   $('#show-update').hide()
@@ -48,6 +48,7 @@ const onBackToMenu = function (event) {
   $('.update-form').hide()
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
+  $('#message').text('Welcome Back To The Menu:')
 }
 
 const onCreateRecipe = function (event) {
