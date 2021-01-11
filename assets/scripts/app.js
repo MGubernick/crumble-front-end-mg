@@ -25,6 +25,7 @@ $(() => {
   $('.create').on('click', recipeEvents.onShowCreate)
   $('#all-my-recipes').on('click', recipeEvents.onMyIndex)
   $('#all-the-recipes').on('click', recipeEvents.onAllIndex)
+  $('#my-favorite-recipes').on('click', recipeEvents.onMyFavorites)
   $('#delete-recipe').on('submit', recipeEvents.onDestroyIt)
   $('.destroy-recipe').on('click', recipeEvents.onDestroyButton)
   $('#find-recipe-mine').on('submit', recipeEvents.onShowIt)

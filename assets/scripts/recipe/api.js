@@ -41,6 +41,17 @@ const recipeIndex = function (recipeData) {
   })
 }
 
+const myFavorites = function (recipeData) {
+  return $.ajax({
+    url: config.apiUrl + '/recipes/favorites',
+    method: 'GET',
+    data: recipeData,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 // api call for deleting a recipe
 const destroyRecipe = function (recipeData) {
   return $.ajax({
@@ -111,5 +122,6 @@ module.exports = {
   showOneRecipe: showOneRecipe,
   updateRecipe: updateRecipe,
   showAnyRecipe: showAnyRecipe,
-  likeButtonClick: likeButtonClick
+  likeButtonClick: likeButtonClick,
+  myFavorites: myFavorites
 }

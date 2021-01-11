@@ -116,12 +116,73 @@ const onAllIndexSuccess = function (response) {
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').show()
   $('#delete-recipe').hide()
+  $('.destroy-recipe').hide()
   $('.change-pw-button').hide()
   $('#message').text(' ')
 }
 
 const onAllIndexFailure = function (error) {
   $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+}
+
+// find favorites success and failure
+
+const onMyFavoritesSuccess = function (response) {
+  // console.log(response)
+  store.recipe = response.recipe
+  const myRecipes = store.recipe
+  // filter for recipies that have liked key set to 'true'
+  // add .reverse() to show newest first!
+  const myFavorites = myRecipes.filter(each => each.liked === true).map(function (favorites) {
+    return favorites
+  })
+  // myRecipes = an array of objects
+  console.log('these are myRecipes', myRecipes)
+  console.log('these are all of your favorites ', myFavorites)
+  let recipeHTML = ''
+  myFavorites.forEach(function (currentRecipe) {
+    let ingredientHTML = ''
+    currentRecipe.ingredients.forEach(ing => {
+      ingredientHTML += `<li>${ing}</li>`
+    })
+    // console.log('current recipe ingredients', currentRecipe.ingredients)
+    const currentRecipeHTML = (`
+      <br>
+      <div class="each-response">
+        <div class="display-toprow">
+          <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+
+        </div>
+      <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
+      <ul>
+        ${ingredientHTML}
+      </ul>
+      <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+      </div>
+      <br>
+      `)
+    recipeHTML += currentRecipeHTML
+  })
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
+  $('.recipe-display').html(recipeHTML)
+  $('.recipe-display-header').text(`Drum Roll Please...Here are ${myFavorites.length} of your favorites!:`)
+  $('#after-create-button-click').hide()
+  $('#show-update').hide()
+  $('.update-form').hide()
+  $('#find-recipe-mine').hide()
+  $('#find-recipe-any').show()
+  $('#delete-recipe').hide()
+  $('.destroy-recipe').hide()
+  $('.change-pw-button').hide()
+  $('#message').text(' ')
+}
+
+const onMyFavoritesFailure = function (error) {
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
 }
 
 // destroy a recipe success and failure
@@ -299,5 +360,7 @@ module.exports = {
   showAnyRecipeSuccess: showAnyRecipeSuccess,
   showAnyRecipeFailure: showAnyRecipeFailure,
   onLikeButtonSuccess: onLikeButtonSuccess,
-  onLikeButtonFailure: onLikeButtonFailure
+  onLikeButtonFailure: onLikeButtonFailure,
+  onMyFavoritesSuccess: onMyFavoritesSuccess,
+  onMyFavoritesFailure: onMyFavoritesFailure
 }

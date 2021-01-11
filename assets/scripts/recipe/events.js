@@ -97,6 +97,15 @@ const onAllIndex = function (event) {
     .catch(ui.onAllIndexFailure)
 }
 
+const onMyFavorites = function (event) {
+  const form = event.target
+  const recipeData = getFormFields(form)
+
+  api.myFavorites(recipeData)
+    .then(ui.onMyFavoritesSuccess)
+    .catch(ui.onMyFavoritesFailure)
+}
+
 const onDestroyIt = function (event) {
   event.preventDefault()
 
@@ -166,5 +175,6 @@ module.exports = {
   onBackToMenu: onBackToMenu,
   onShowAny: onShowAny,
   onDestroyButton: onDestroyButton,
-  onLikeButton: onLikeButton
+  onLikeButton: onLikeButton,
+  onMyFavorites: onMyFavorites
 }
