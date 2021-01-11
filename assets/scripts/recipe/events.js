@@ -144,7 +144,10 @@ const onUpdateOne = function (event) {
 const onLikeButton = function () {
   // const form = event.target
   // const recipeData = getFormFields(form)
-  console.log('recipe data when like clicked: ', store)
+  // console.log('recipe data when like clicked: ', recipeData)
+  console.log('store data in events when like clicked: ', store)
+  store.recipe.liked = true
+  // console.log('liked status when like clicked: ', store.recipe.liked)
   api.likeButtonClick(store)
     .then(ui.onLikeButtonSuccess)
     .catch(ui.onLikeButtonFailure)

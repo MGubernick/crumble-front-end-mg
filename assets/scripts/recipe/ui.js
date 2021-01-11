@@ -68,7 +68,7 @@ const onMyIndexSuccess = function (response) {
 }
 
 const onMyIndexFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
 }
 
 // index all recipes from all users
@@ -121,7 +121,7 @@ const onAllIndexSuccess = function (response) {
 }
 
 const onAllIndexFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
 }
 
 // destroy a recipe success and failure
@@ -134,12 +134,13 @@ const destroyRecipeSuccess = function () {
 }
 
 const destroyRecipeFailure = function (error) {
-  $('#message').text('Uh Oh! Your burnt recipe is still here...Error: ' + error.responseJSON)
+  $('#message').text('Uh Oh! Your burnt recipe is still here...Error: ' + error.responseJSON.message)
 }
 
 const showOneRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const thisRecipe = store.recipe
+  console.log('Your Recipe Before You Like It: ', thisRecipe)
   let ingredientHTML = ''
   thisRecipe.ingredients.forEach(ing => {
     ingredientHTML += `<li>${ing}</li>`
@@ -178,13 +179,14 @@ const showOneRecipeSuccess = function (response) {
 }
 
 const showOneRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
 }
 
 // show anyone's recipe success and failure functions
 const showAnyRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const thisRecipe = store.recipe
+  console.log('ANY Recipe Before You Like It: ', thisRecipe)
   let ingredientHTML = ''
   thisRecipe.ingredients.forEach(ing => {
     ingredientHTML += `<li>${ing}</li>`
@@ -222,13 +224,14 @@ const showAnyRecipeSuccess = function (response) {
 }
 
 const showAnyRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
+  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
 }
 
 // Figure out why updatedRecipe.ingredients.forEach isn't a function....
 const updateRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const updatedRecipe = store.recipe
+  // console.log('here is your updated recipe: ', updatedRecipe)
   let ingredientHTML = ''
   updatedRecipe.ingredients.forEach(ing => {
     ingredientHTML += `<li>${ing}</li>`
@@ -262,18 +265,22 @@ const updateRecipeSuccess = function (response) {
 }
 
 const updateRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON)
+  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON.message)
 }
 
 // like button click success and Failure
 
 const onLikeButtonSuccess = function (response) {
+  store.recipe = response.recipe
+  const likedRecipe = store.recipe
+  console.log('Recipe After You Liked It: ', likedRecipe)
   $('#message').text('Thanks for liking the recipe!')
   $('.like-1').hide()
+  $('.display-toprow').append('<small>(liked)</small>')
 }
 
 const onLikeButtonFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON)
+  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON.message)
 }
 
 module.exports = {

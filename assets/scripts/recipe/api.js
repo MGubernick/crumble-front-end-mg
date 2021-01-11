@@ -90,20 +90,13 @@ const updateRecipe = function (recipeData) {
 // Like Button
 
 const likeButtonClick = function (recipeData) {
-  console.log('this is store for like ', store.recipe)
+  // console.log('this is recipeData for like in api ', recipeData)
+  // const newIngArr = recipeData.recipe.ingredients.split(',')
+  // recipeData.recipe.ingredients = newIngArr
   return $.ajax({
-    url: config.apiUrl + '/recipes/like/' + store.recipe._id,
+    url: config.apiUrl + '/recipes/liked/' + store.recipe._id,
     method: 'PATCH',
-    data: {
-      recipe: {
-        name: store.recipe.name,
-        author: store.recipe.author,
-        cookieType: store.recipe.cookieType,
-        ingredients: store.recipe.ingredients,
-        directions: store.recipe.directions,
-        liked: true
-      }
-    },
+    data: recipeData,
     headers: {
       Authorization: 'Bearer ' + store.user.token
     }
