@@ -14,7 +14,8 @@ curl 'https://fathomless-brook-30890.herokuapp.com/recipes' \
       "author": "'"${AUTHOR}"'",
       "cookieType": "'"${TYPE}"'",
       "ingredients": "'"${INGR}"'",
-      "directions": "'"${DIR}"'"
+      "directions": "'"${DIR}"'",
+      "liked": "'"${LIKE}"'"
     }
   }'
 

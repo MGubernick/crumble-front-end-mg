@@ -4,7 +4,8 @@
 $body-bg-color: #9c663f;
 $recipe-bg-color: #ffdead;
 $input-bg: #f2e5db;
-// $second-secondary: #009e1d;
+$like-button: #4be3f8;
+$like-button2: #f69711;
 $lines: #f18205;
 $button-bg: #9d9996;
 $black: #000;
@@ -88,3 +89,20 @@ h1 {
 .modal-body {
   background-color: $recipe-bg-color;
 }
+
+.display-toprow {
+  display: flex;
+  justify-content: space-between;
+}
+
+#like-1  {
+  background-color: $button-bg;
+}
+
+#like-2 {
+  background-color: $like-button;
+}
+
+// .like:focus {
+//   background-color: $like-button;
+// }

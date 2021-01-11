@@ -4,7 +4,7 @@
 const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../../lib/get-form-fields')
-// const store = require('./../store.js')
+const store = require('./../store.js')
 
 // create functions that will be referenced by event listeners in app.js
 const onShowCreate = function (event) {
@@ -30,8 +30,8 @@ const onShowChangePass = function (event) {
 
 const onShowUpdate = function (event) {
   $('.update-form').show()
-  $('.recipe-display').hide()
-  $('.recipe-display-header').hide()
+  // $('.recipe-display').hide()
+  // $('.recipe-display-header').hide()
   $('#after-create-button-click').hide()
   $('.change-pw-button').hide()
   $('#find-recipe-mine').hide()
@@ -48,6 +48,7 @@ const onBackToMenu = function (event) {
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
   $('#delete-recipe').hide()
+  $('.destroy-recipe').hide()
   $('#show-update').hide()
   $('.update-form').hide()
   $('.recipe-display').hide()
@@ -58,6 +59,11 @@ const onBackToMenu = function (event) {
 const onDestroyButton = function (event) {
   $('#delete-recipe').show()
 }
+
+// const onLikeButton = function (event) {
+//   $('#like-1').hide()
+//   $('#like-2').show()
+// }
 
 const onCreateRecipe = function (event) {
   event.preventDefault()
@@ -135,6 +141,15 @@ const onUpdateOne = function (event) {
     .catch(ui.updateRecipeFailure)
 }
 
+const onLikeButton = function () {
+  // const form = event.target
+  // const recipeData = getFormFields(form)
+  console.log('recipe data when like clicked: ', store)
+  api.likeButtonClick(store)
+    .then(ui.onLikeButtonSuccess)
+    .catch(ui.onLikeButtonFailure)
+}
+
 module.exports = {
   onShowCreate: onShowCreate,
   onCreateRecipe: onCreateRecipe,
@@ -147,5 +162,6 @@ module.exports = {
   onShowChangePass: onShowChangePass,
   onBackToMenu: onBackToMenu,
   onShowAny: onShowAny,
-  onDestroyButton: onDestroyButton
+  onDestroyButton: onDestroyButton,
+  onLikeButton: onLikeButton
 }

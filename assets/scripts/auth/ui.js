@@ -25,6 +25,7 @@ const signInSuccess = function (response) {
   $('.update-form').hide()
   $('#show-update').hide()
   $('#delete-recipe').hide()
+  $('.destroy-recipe').hide()
   $('#change-password').hide()
   // $('#after-create-button-click').show()
   $('#index-recipes').show()

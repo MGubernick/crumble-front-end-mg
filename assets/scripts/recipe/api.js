@@ -87,6 +87,29 @@ const updateRecipe = function (recipeData) {
   })
 }
 
+// Like Button
+
+const likeButtonClick = function (recipeData) {
+  console.log('this is store for like ', store.recipe)
+  return $.ajax({
+    url: config.apiUrl + '/recipes/like/' + store.recipe._id,
+    method: 'PATCH',
+    data: {
+      recipe: {
+        name: store.recipe.name,
+        author: store.recipe.author,
+        cookieType: store.recipe.cookieType,
+        ingredients: store.recipe.ingredients,
+        directions: store.recipe.directions,
+        liked: true
+      }
+    },
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createRecipe: createRecipe,
   myRecipeIndex: myRecipeIndex,
@@ -94,5 +117,6 @@ module.exports = {
   destroyRecipe: destroyRecipe,
   showOneRecipe: showOneRecipe,
   updateRecipe: updateRecipe,
-  showAnyRecipe: showAnyRecipe
+  showAnyRecipe: showAnyRecipe,
+  likeButtonClick: likeButtonClick
 }
