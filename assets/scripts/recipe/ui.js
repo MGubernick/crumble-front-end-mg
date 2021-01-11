@@ -16,41 +16,65 @@ const onCreateRecipeSuccess = function (response) {
 }
 
 const onCreateRecipeFailure = function (error) {
-  $('#message').text('Uh Oh..Something went wrong, take a look. Error: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh..Something went wrong, take a look. Error: ${error.responseJSON.message}`)
 }
 
 // index all of a users recipes success and Failure
 const onMyIndexSuccess = function (response) {
   store.recipe = response.recipe
   const myRecipes = store.recipe
-  console.log('these are all of my recipes ', myRecipes)
+  const myRecipesReverse = myRecipes.reverse()
+  // console.log('these are all of my recipes ', myRecipes)
   // myRecipes = an array of objects
   // console.log('these are my recipes ', myRecipes)
   let recipeHTML = ''
-  myRecipes.forEach(function (currentRecipe) {
+  myRecipesReverse.forEach(function (currentRecipe) {
     let ingredientHTML = ''
     currentRecipe.ingredients.forEach(ing => {
       ingredientHTML += `<li>${ing}</li>`
     })
+    if (currentRecipe.liked === true) {
+      const currentRecipeHTML = (`
+        <br>
+        <div class="each-response">
+        <div class="display-toprow">
+          <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+          <small>(liked)</small>
+        </div>
+        <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+        <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+        <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+        <p><b>Ingredients Needed:</b></p>
+        <ul>
+          ${ingredientHTML}
+        </ul>
+        <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+        </div>
+        <br>
+        `)
+      recipeHTML += currentRecipeHTML
+    } else {
+      const currentRecipeHTML = (`
+        <br>
+        <div class="each-response">
+        <div class="display-toprow">
+          <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+        </div>
+        <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+        <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+        <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+        <p><b>Ingredients Needed:</b></p>
+        <ul>
+          ${ingredientHTML}
+        </ul>
+        <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+        </div>
+        <br>
+        `)
+      recipeHTML += currentRecipeHTML
+    }
+    // $('.display-toprow').append('<small>(liked)</small>')
     // console.log('current recipe ingredients', currentRecipe.ingredients)
-    const currentRecipeHTML = (`
-      <br>
-      <div class="each-response">
-      <div class="display-toprow">
-        <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
-      </div>
-      <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
-      <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
-      <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
-      <p><b>Ingredients Needed:</b></p>
-      <ul>
-        ${ingredientHTML}
-      </ul>
-      <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
-      </div>
-      <br>
-      `)
-    recipeHTML += currentRecipeHTML
   })
   $('.recipe-display').show()
   $('.recipe-display-header').show()
@@ -68,7 +92,7 @@ const onMyIndexSuccess = function (response) {
 }
 
 const onMyIndexFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
 }
 
 // index all recipes from all users
@@ -77,34 +101,56 @@ const onAllIndexSuccess = function (response) {
   // console.log(response)
   store.recipe = response.recipe
   const myRecipes = store.recipe
+  const myRecipesReverse = myRecipes.reverse()
   // myRecipes = an array of objects
   console.log('these are all of the recipes ', myRecipes)
   let recipeHTML = ''
-  myRecipes.forEach(function (currentRecipe) {
+  myRecipesReverse.forEach(function (currentRecipe) {
     let ingredientHTML = ''
     currentRecipe.ingredients.forEach(ing => {
       ingredientHTML += `<li>${ing}</li>`
     })
     // console.log('current recipe ingredients', currentRecipe.ingredients)
-    const currentRecipeHTML = (`
-      <br>
-      <div class="each-response">
+    if (currentRecipe.liked === true) {
+      const currentRecipeHTML = (`
+        <br>
+        <div class="each-response">
         <div class="display-toprow">
           <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
-
+          <small>(liked)</small>
         </div>
-      <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
-      <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
-      <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
-      <p><b>Ingredients Needed:</b></p>
-      <ul>
-        ${ingredientHTML}
-      </ul>
-      <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
-      </div>
-      <br>
-      `)
-    recipeHTML += currentRecipeHTML
+        <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+        <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+        <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+        <p><b>Ingredients Needed:</b></p>
+        <ul>
+          ${ingredientHTML}
+        </ul>
+        <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+        </div>
+        <br>
+        `)
+      recipeHTML += currentRecipeHTML
+    } else {
+      const currentRecipeHTML = (`
+        <br>
+        <div class="each-response">
+        <div class="display-toprow">
+          <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+        </div>
+        <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+        <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+        <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+        <p><b>Ingredients Needed:</b></p>
+        <ul>
+          ${ingredientHTML}
+        </ul>
+        <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+        </div>
+        <br>
+        `)
+      recipeHTML += currentRecipeHTML
+    }
   })
   $('.recipe-display').show()
   $('.recipe-display-header').show()
@@ -122,7 +168,7 @@ const onAllIndexSuccess = function (response) {
 }
 
 const onAllIndexFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
 }
 
 // find favorites success and failure
@@ -131,9 +177,10 @@ const onMyFavoritesSuccess = function (response) {
   // console.log(response)
   store.recipe = response.recipe
   const myRecipes = store.recipe
+  const myRecipesReverse = myRecipes.reverse()
   // filter for recipies that have liked key set to 'true'
   // add .reverse() to show newest first!
-  const myFavorites = myRecipes.filter(each => each.liked === true).map(function (favorites) {
+  const myFavorites = myRecipesReverse.filter(each => each.liked === true).map(function (favorites) {
     return favorites
   })
   // myRecipes = an array of objects
@@ -146,25 +193,46 @@ const onMyFavoritesSuccess = function (response) {
       ingredientHTML += `<li>${ing}</li>`
     })
     // console.log('current recipe ingredients', currentRecipe.ingredients)
-    const currentRecipeHTML = (`
-      <br>
-      <div class="each-response">
+    if (currentRecipe.liked === true) {
+      const currentRecipeHTML = (`
+        <br>
+        <div class="each-response">
         <div class="display-toprow">
           <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
-
+          <small>(liked)</small>
         </div>
-      <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
-      <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
-      <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
-      <p><b>Ingredients Needed:</b></p>
-      <ul>
-        ${ingredientHTML}
-      </ul>
-      <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
-      </div>
-      <br>
-      `)
-    recipeHTML += currentRecipeHTML
+        <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+        <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+        <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+        <p><b>Ingredients Needed:</b></p>
+        <ul>
+          ${ingredientHTML}
+        </ul>
+        <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+        </div>
+        <br>
+        `)
+      recipeHTML += currentRecipeHTML
+    } else {
+      const currentRecipeHTML = (`
+        <br>
+        <div class="each-response">
+        <div class="display-toprow">
+          <h4><b>Recipe Name:</b> ${currentRecipe.name}</h4>
+        </div>
+        <p><b>Recipe ID:</b> ${currentRecipe._id}</p>
+        <h6><b>Submitted By:</b> ${currentRecipe.author}</h6>
+        <p><b>Cookie Type:</b> ${currentRecipe.cookieType}</p>
+        <p><b>Ingredients Needed:</b></p>
+        <ul>
+          ${ingredientHTML}
+        </ul>
+        <p><b>Baking Directions:</b> ${currentRecipe.directions}</p>
+        </div>
+        <br>
+        `)
+      recipeHTML += currentRecipeHTML
+    }
   })
   $('.recipe-display').show()
   $('.recipe-display-header').show()
@@ -182,7 +250,7 @@ const onMyFavoritesSuccess = function (response) {
 }
 
 const onMyFavoritesFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON)
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
 }
 
 // destroy a recipe success and failure
@@ -195,7 +263,7 @@ const destroyRecipeSuccess = function () {
 }
 
 const destroyRecipeFailure = function (error) {
-  $('#message').text('Uh Oh! Your burnt recipe is still here...Error: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh! Your burnt recipe is still here...Error: ${error.responseJSON.message}`)
 }
 
 const showOneRecipeSuccess = function (response) {
@@ -240,7 +308,7 @@ const showOneRecipeSuccess = function (response) {
 }
 
 const showOneRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
 }
 
 // show anyone's recipe success and failure functions
@@ -285,7 +353,7 @@ const showAnyRecipeSuccess = function (response) {
 }
 
 const showAnyRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong...Error: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
 }
 
 // Figure out why updatedRecipe.ingredients.forEach isn't a function....
@@ -326,7 +394,7 @@ const updateRecipeSuccess = function (response) {
 }
 
 const updateRecipeFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh, something went wrong! Couldn't Update that because: ${error.responseJSON.message}`)
 }
 
 // like button click success and Failure
@@ -341,7 +409,7 @@ const onLikeButtonSuccess = function (response) {
 }
 
 const onLikeButtonFailure = function (error) {
-  $('#message').text('Uh Oh, something went wrong! Couldn\'t Update that because: ' + error.responseJSON.message)
+  $('#message').text(`Uh Oh, something went wrong! Couldn't Update that because: ${error.responseJSON.message}`)
 }
 
 module.exports = {
