@@ -58,6 +58,9 @@ const changePasswordFailure = function (error) {
 const signOutSuccess = function () {
   $('#message').text('Signed Out Successfully! See Ya Next Time!')
   $('.before-sign-in').show()
+  $('.welcome').show()
+  $('#sign-in').hide()
+  $('#sign-up').hide()
   $('.after-sign-in').hide()
   $('#after-create-button-click').hide()
   $('.recipe-display').hide()

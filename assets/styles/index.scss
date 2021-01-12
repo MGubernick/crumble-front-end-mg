@@ -96,8 +96,25 @@ h1 {
 
 .like-1  {
   background-color: $like-button;
+  font-size: 12px;
 }
 
-// .like:focus {
-//   background-color: $like-button;
-// }
+@media only screen and (max-width: 900px) {
+  #index-recipes {
+    align-items: center;
+    display: flex;
+  }
+
+  #message {
+    text-align: center;
+  }
+
+  .before-sign-in {
+    align-items: center;
+    display: flex;
+  }
+
+  .recipe-display-header {
+    text-align: center;
+  }
+}

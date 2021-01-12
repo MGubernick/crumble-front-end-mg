@@ -5,6 +5,11 @@ const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../../lib/get-form-fields')
 
+const onWelcome = function (event) {
+  $('#sign-in').show()
+  $('#sign-up').show()
+  $('.welcome').hide()
+}
 // create functions that will be referenced by event listeners in app.js
 const onSignUp = function (event) {
   // Prevent the page from refreshing
@@ -58,5 +63,6 @@ module.exports = {
   onSignUp: onSignUp,
   onSignIn: onSignIn,
   onChangePassword: onChangePassword,
-  onSignOut: onSignOut
+  onSignOut: onSignOut,
+  onWelcome: onWelcome
 }
