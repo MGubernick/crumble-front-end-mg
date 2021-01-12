@@ -237,7 +237,7 @@ const onMyFavoritesSuccess = function (response) {
   $('.recipe-display').show()
   $('.recipe-display-header').show()
   $('.recipe-display').html(recipeHTML)
-  $('.recipe-display-header').text(`Drum Roll Please...Here are ${myFavorites.length} of your favorites!:`)
+  $('.recipe-display-header').text(`Drum Roll Please...Here are ${myFavorites.length} of the communitie's favorites!:`)
   $('#after-create-button-click').hide()
   $('#show-update').hide()
   $('.update-form').hide()
