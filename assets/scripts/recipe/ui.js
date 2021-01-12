@@ -103,7 +103,7 @@ const onAllIndexSuccess = function (response) {
   const myRecipes = store.recipe
   const myRecipesReverse = myRecipes.reverse()
   // myRecipes = an array of objects
-  console.log('these are all of the recipes ', myRecipes)
+  // console.log('these are all of the recipes ', myRecipes)
   let recipeHTML = ''
   myRecipesReverse.forEach(function (currentRecipe) {
     let ingredientHTML = ''
@@ -184,8 +184,8 @@ const onMyFavoritesSuccess = function (response) {
     return favorites
   })
   // myRecipes = an array of objects
-  console.log('these are myRecipes', myRecipes)
-  console.log('these are all of your favorites ', myFavorites)
+  // console.log('these are myRecipes', myRecipes)
+  // console.log('these are all of your favorites ', myFavorites)
   let recipeHTML = ''
   myFavorites.forEach(function (currentRecipe) {
     let ingredientHTML = ''
@@ -402,7 +402,7 @@ const updateRecipeFailure = function (error) {
 const onLikeButtonSuccess = function (response) {
   store.recipe = response.recipe
   const likedRecipe = store.recipe
-  console.log('Recipe After You Liked It: ', likedRecipe)
+  // console.log('Recipe After You Liked It: ', likedRecipe)
   $('#message').text('Thanks for liking the recipe!')
   $('.like-1').hide()
   $('.display-toprow').append('<small>(liked)</small>')
