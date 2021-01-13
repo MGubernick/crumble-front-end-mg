@@ -11,12 +11,10 @@ $(() => {
   $('.after-sign-in').hide()
   $('#after-create-button-click').hide()
   $('.after-find-one').hide()
-  $('.update-form').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
   $('#sign-up').hide()
   $('#sign-in').hide()
-  // $('#message').show()
 
   // event listeners
   $('#sign-up').on('submit', authEvents.onSignUp)
@@ -43,5 +41,6 @@ $(() => {
   })
   $('#updateRecipeModal').on('shown.bs.modal', function () {
     $('#updateRecipeModal').trigger('focus')
+    $('.updateRecipeId').hide()
   })
 })

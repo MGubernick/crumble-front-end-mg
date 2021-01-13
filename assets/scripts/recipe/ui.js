@@ -7,10 +7,8 @@ const store = require('./../store.js')
 const onCreateRecipeSuccess = function (response) {
   $('#message').text('Created Your Recipe! Let\'s bake!')
   store.recipe = response.recipe
-  // console.log(store.recipe)
   $('.create-button').show()
   $('#index-recipes').show()
-  $('#create-recipe').hide()
   $('.change-pw-button').hide()
   $('form').trigger('reset')
 }
@@ -24,9 +22,9 @@ const onMyIndexSuccess = function (response) {
   store.recipe = response.recipe
   const myRecipes = store.recipe
   const myRecipesReverse = myRecipes.reverse()
-  // console.log('these are all of my recipes ', myRecipes)
+
   // myRecipes = an array of objects
-  // console.log('these are my recipes ', myRecipes)
+
   let recipeHTML = ''
   myRecipesReverse.forEach(function (currentRecipe) {
     let ingredientHTML = ''
@@ -73,8 +71,6 @@ const onMyIndexSuccess = function (response) {
         `)
       recipeHTML += currentRecipeHTML
     }
-    // $('.display-toprow').append('<small>(liked)</small>')
-    // console.log('current recipe ingredients', currentRecipe.ingredients)
   })
   $('.recipe-display').show()
   $('.recipe-display-header').show()
@@ -98,19 +94,16 @@ const onMyIndexFailure = function (error) {
 // index all recipes from all users
 
 const onAllIndexSuccess = function (response) {
-  // console.log(response)
   store.recipe = response.recipe
   const myRecipes = store.recipe
   const myRecipesReverse = myRecipes.reverse()
-  // myRecipes = an array of objects
-  // console.log('these are all of the recipes ', myRecipes)
   let recipeHTML = ''
   myRecipesReverse.forEach(function (currentRecipe) {
     let ingredientHTML = ''
     currentRecipe.ingredients.forEach(ing => {
       ingredientHTML += `<li>${ing}</li>`
     })
-    // console.log('current recipe ingredients', currentRecipe.ingredients)
+
     if (currentRecipe.liked === true) {
       const currentRecipeHTML = (`
         <br>
@@ -174,7 +167,6 @@ const onAllIndexFailure = function (error) {
 // find favorites success and failure
 
 const onMyFavoritesSuccess = function (response) {
-  // console.log(response)
   store.recipe = response.recipe
   const myRecipes = store.recipe
   const myRecipesReverse = myRecipes.reverse()
@@ -183,16 +175,13 @@ const onMyFavoritesSuccess = function (response) {
   const myFavorites = myRecipesReverse.filter(each => each.liked === true).map(function (favorites) {
     return favorites
   })
-  // myRecipes = an array of objects
-  // console.log('these are myRecipes', myRecipes)
-  // console.log('these are all of your favorites ', myFavorites)
   let recipeHTML = ''
   myFavorites.forEach(function (currentRecipe) {
     let ingredientHTML = ''
     currentRecipe.ingredients.forEach(ing => {
       ingredientHTML += `<li>${ing}</li>`
     })
-    // console.log('current recipe ingredients', currentRecipe.ingredients)
+
     if (currentRecipe.liked === true) {
       const currentRecipeHTML = (`
         <br>
@@ -263,13 +252,13 @@ const destroyRecipeSuccess = function () {
 }
 
 const destroyRecipeFailure = function (error) {
-  $('#message').text(`Uh Oh! Your burnt recipe is still here...Error: ${error.responseJSON.message}`)
+  $('#message').text(`Uh Oh! Your burnt recipe is still here...Error: ${error.statusText}`)
 }
 
 const showOneRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const thisRecipe = store.recipe
-  console.log('Your Recipe Before You Like It: ', thisRecipe)
+
   let ingredientHTML = ''
   thisRecipe.ingredients.forEach(ing => {
     ingredientHTML += `<li>${ing}</li>`
@@ -308,14 +297,15 @@ const showOneRecipeSuccess = function (response) {
 }
 
 const showOneRecipeFailure = function (error) {
-  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.statusText}`)
+  $('form').trigger('reset')
 }
 
 // show anyone's recipe success and failure functions
 const showAnyRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const thisRecipe = store.recipe
-  console.log('ANY Recipe Before You Like It: ', thisRecipe)
+
   let ingredientHTML = ''
   thisRecipe.ingredients.forEach(ing => {
     ingredientHTML += `<li>${ing}</li>`
@@ -341,7 +331,6 @@ const showAnyRecipeSuccess = function (response) {
       `)
   $('.recipe-display').show()
   $('.recipe-display-header').show()
-  // $('#show-update').show()
   $('.recipe-display').html(recipeHTML)
   $('.recipe-display-header').text('Hot from the oven, here is the recipe!:')
   $('#after-create-button-click').hide()
@@ -353,14 +342,14 @@ const showAnyRecipeSuccess = function (response) {
 }
 
 const showAnyRecipeFailure = function (error) {
-  $('#message').text(`Uh Oh, something went wrong...Error: ${error.responseJSON.message}`)
+  $('#message').text('Oops! That Attempt Failed...because Error: ' + error.statusText)
+  $('form').trigger('reset')
 }
 
 // Figure out why updatedRecipe.ingredients.forEach isn't a function....
 const updateRecipeSuccess = function (response) {
   store.recipe = response.recipe
   const updatedRecipe = store.recipe
-  // console.log('here is your updated recipe: ', updatedRecipe)
   let ingredientHTML = ''
   updatedRecipe.ingredients.forEach(ing => {
     ingredientHTML += `<li>${ing}</li>`
@@ -372,6 +361,7 @@ const updateRecipeSuccess = function (response) {
       <div class="display-toprow">
         <h4><b>Recipe Name:</b> ${updatedRecipe.name}</h4>
       </div>
+      <p><b>Recipe ID:</b> ${updatedRecipe._id}</p>
       <h6><b>Submitted By:</b> ${updatedRecipe.author}</h6>
       <p><b>Cookie Type:</b> ${updatedRecipe.cookieType}</p>
       <p><b>Ingredients Needed:</b></p>
@@ -387,7 +377,6 @@ const updateRecipeSuccess = function (response) {
   $('.recipe-display-header').show()
   $('.recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
   $('.recipe-display').html(recipeHTML)
-  $('#update-recipe').hide()
   $('.change-pw-button').hide()
   $('#message').text(' ')
   $('form').trigger('reset')
@@ -401,8 +390,6 @@ const updateRecipeFailure = function (error) {
 
 const onLikeButtonSuccess = function (response) {
   store.recipe = response.recipe
-  // const likedRecipe = store.recipe
-  // console.log('Recipe After You Liked It: ', likedRecipe)
   $('#message').text('Thanks for liking the recipe!')
   $('.like-1').hide()
   $('.display-toprow').append('<small>(liked)</small>')

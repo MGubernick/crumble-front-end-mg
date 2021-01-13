@@ -7,7 +7,7 @@ const store = require('./../store.js')
 const createRecipe = function (recipeData) {
   const newIngArr = recipeData.recipe.ingredients.split(',')
   recipeData.recipe.ingredients = newIngArr
-  // console.log(recipeData)
+
   return $.ajax({
     url: config.apiUrl + '/recipes',
     method: 'POST',
@@ -85,6 +85,7 @@ const showAnyRecipe = function (recipeData) {
   })
 }
 
+// update recipe
 const updateRecipe = function (recipeData) {
   const newIngArr = recipeData.recipe.ingredients.split(',')
   recipeData.recipe.ingredients = newIngArr
@@ -101,9 +102,6 @@ const updateRecipe = function (recipeData) {
 // Like Button
 
 const likeButtonClick = function (recipeData) {
-  // console.log('this is recipeData for like in api ', recipeData)
-  // const newIngArr = recipeData.recipe.ingredients.split(',')
-  // recipeData.recipe.ingredients = newIngArr
   return $.ajax({
     url: config.apiUrl + '/recipes/liked/' + store.recipe._id,
     method: 'PATCH',

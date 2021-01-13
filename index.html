@@ -111,6 +111,7 @@
   </div>
 
   <div class="after-find-one">
+<!-- button to show update -->
     <button id="show-update" type="button" name="button" data-toggle="modal" data-target="#updateRecipeModal">Update</button>
     <div class="update-form">
 <!-- Modal -->
@@ -125,8 +126,7 @@
       </div>
       <div class="modal-body">
         <form id="update-recipe">
-          <!-- <input type="text" name="recipe[_id]" placeholder="Recipe ID here" /> -->
-          <!-- <br> -->
+          <input class="updateRecipeId" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
           <input type="text" name="recipe[name]" placeholder="Updated Recipe Name" />
           <br>
           <input type="text" name="recipe[author]" placeholder="Updated Recipe Auther" />

@@ -18,7 +18,6 @@ const signInSuccess = function (response) {
   $('#message').text('Sign In Successful! Check Out The Menu:')
 
   store.user = response.user
-  // console.log('store after is: ', store)
   $('.before-sign-in').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
@@ -27,7 +26,6 @@ const signInSuccess = function (response) {
   $('#delete-recipe').hide()
   $('.destroy-recipe').hide()
   $('#change-password').hide()
-  // $('#after-create-button-click').show()
   $('#index-recipes').show()
   $('.recipe-display').hide()
   $('.recipe-display').text('')

@@ -31,7 +31,6 @@ const onSignIn = function (event) {
 
   const form = event.target
   const data = getFormFields(form)
-  // console.log('data that you got ', data)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)

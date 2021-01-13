@@ -15,7 +15,6 @@ const onShowCreate = function (event) {
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
   $('.update-form').hide()
-  // $('#index-recipes').hide()
   $('#delete-recipe').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
@@ -30,8 +29,6 @@ const onShowChangePass = function (event) {
 
 const onShowUpdate = function (event) {
   $('.update-form').show()
-  // $('.recipe-display').hide()
-  // $('.recipe-display-header').hide()
   $('#after-create-button-click').hide()
   $('.change-pw-button').hide()
   $('#find-recipe-mine').hide()
@@ -60,17 +57,12 @@ const onDestroyButton = function (event) {
   $('#delete-recipe').show()
 }
 
-// const onLikeButton = function (event) {
-//   $('#like-1').hide()
-//   $('#like-2').show()
-// }
-
 const onCreateRecipe = function (event) {
   event.preventDefault()
 
   const form = event.target
   const recipeData = getFormFields(form)
-  // console.log(recipeData)
+
   api.createRecipe(recipeData)
     .then(function (response) {
       return response
@@ -122,7 +114,6 @@ const onShowIt = function (event) {
 
   const form = event.target
   const recipeData = getFormFields(form)
-
   api.showOneRecipe(recipeData)
     .then(ui.showOneRecipeSuccess)
     .catch(ui.showOneRecipeFailure)
@@ -136,14 +127,15 @@ const onShowAny = function (event) {
 
   api.showAnyRecipe(recipeData)
     .then(ui.showAnyRecipeSuccess)
-    .then(ui.showAnyRecipeFailure)
+    .catch(ui.showAnyRecipeFailure)
 }
 
 const onUpdateOne = function (event) {
   event.preventDefault()
-  // console.log(store)
+
   const form = event.target
   const recipeData = getFormFields(form)
+  recipeData.recipe._id = store.recipe._id
 
   api.updateRecipe(recipeData)
     .then(ui.updateRecipeSuccess)
@@ -151,12 +143,8 @@ const onUpdateOne = function (event) {
 }
 
 const onLikeButton = function () {
-  // const form = event.target
-  // const recipeData = getFormFields(form)
-  // console.log('recipe data when like clicked: ', recipeData)
-  console.log('store data in events when like clicked: ', store)
   store.recipe.liked = true
-  // console.log('liked status when like clicked: ', store.recipe.liked)
+
   api.likeButtonClick(store)
     .then(ui.onLikeButtonSuccess)
     .catch(ui.onLikeButtonFailure)
