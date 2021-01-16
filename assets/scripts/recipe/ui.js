@@ -3,6 +3,8 @@
 // recipe ui
 const store = require('./../store.js')
 
+// const api = require('./api')
+
 // create a recipe success and failure
 const onCreateRecipeSuccess = function (response) {
   $('#message').text('Created Your Recipe! Let\'s bake!')
@@ -10,6 +12,7 @@ const onCreateRecipeSuccess = function (response) {
   $('.create-button').show()
   $('#index-recipes').show()
   $('.change-pw-button').hide()
+  $('.destroy-recipe').hide()
   $('form').trigger('reset')
 }
 
@@ -82,7 +85,7 @@ const onMyIndexSuccess = function (response) {
   $('#find-recipe-mine').show()
   $('#find-recipe-any').hide()
   $('.change-pw-button').hide()
-  $('.destroy-recipe').show()
+  $('.destroy-recipe').hide()
   $('#find-recipe-mine').show()
   $('#message').text(' ')
 }
@@ -154,7 +157,7 @@ const onAllIndexSuccess = function (response) {
   $('.update-form').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').show()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('.destroy-recipe').hide()
   $('.change-pw-button').hide()
   $('#message').text(' ')
@@ -232,7 +235,7 @@ const onMyFavoritesSuccess = function (response) {
   $('.update-form').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').show()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('.destroy-recipe').hide()
   $('.change-pw-button').hide()
   $('#message').text(' ')
@@ -246,7 +249,9 @@ const onMyFavoritesFailure = function (error) {
 const destroyRecipeSuccess = function () {
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
-  $('#delete-recipe').hide()
+  $('.destroy-recipe').hide()
+  $('#show-update').hide()
+  $('#find-recipe-mine').hide()
   $('#message').text('Recipe Burnt! It\'s gone!')
   $('form').trigger('reset')
 }
@@ -256,8 +261,10 @@ const destroyRecipeFailure = function (error) {
 }
 
 const showOneRecipeSuccess = function (response) {
+  // console.log('this is respone for showOne')
   store.recipe = response.recipe
   const thisRecipe = store.recipe
+  // console.log('this is show one Recipe store.recipe', thisRecipe)
 
   let ingredientHTML = ''
   thisRecipe.ingredients.forEach(ing => {
@@ -291,7 +298,7 @@ const showOneRecipeSuccess = function (response) {
   $('.change-pw-button').hide()
   $('.after-find-one').show()
   $('.destroy-recipe').show()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('#message').text(' ')
   $('form').trigger('reset')
 }
@@ -335,7 +342,8 @@ const showAnyRecipeSuccess = function (response) {
   $('.recipe-display-header').text('Hot from the oven, here is the recipe!:')
   $('#after-create-button-click').hide()
   $('.after-find-one').show()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
+  $('.destroy-recipe').hide()
   $('.change-pw-button').hide()
   $('#message').text(' ')
   $('form').trigger('reset')
@@ -349,41 +357,97 @@ const showAnyRecipeFailure = function (error) {
 // Figure out why updatedRecipe.ingredients.forEach isn't a function....
 const updateRecipeSuccess = function (response) {
   store.recipe = response.recipe
-  const updatedRecipe = store.recipe
-  let ingredientHTML = ''
-  updatedRecipe.ingredients.forEach(ing => {
-    ingredientHTML += `<li>${ing}</li>`
-  })
-  let recipeHTML = updatedRecipe
-  recipeHTML = (`
-      <br>
-      <div class="each-response">
-      <div class="display-toprow">
-        <h4><b>Recipe Name:</b> ${updatedRecipe.name}</h4>
-      </div>
-      <p><b>Recipe ID:</b> ${updatedRecipe._id}</p>
-      <h6><b>Submitted By:</b> ${updatedRecipe.author}</h6>
-      <p><b>Cookie Type:</b> ${updatedRecipe.cookieType}</p>
-      <p><b>Ingredients Needed:</b></p>
-      <ul>
-        ${ingredientHTML}
-      </ul>
-      <p><b>Baking Directions:</b> ${updatedRecipe.directions}</p>
-      </div>
-      <br>
-      `)
+  // const updatedRecipe = store.recipe
+  // let ingredientHTML = ''
+  // updatedRecipe.ingredients.forEach(ing => {
+  //   ingredientHTML += `<li>${ing}</li>`
+  // })
+  // let recipeHTML = updatedRecipe
+  // recipeHTML = (`
+  //     <br>
+  //     <div class="each-response">
+  //     <div class="display-toprow">
+  //       <h4><b>Recipe Name:</b> ${updatedRecipe.name}</h4>
+  //     </div>
+  //     <p><b>Recipe ID:</b> ${updatedRecipe._id}</p>
+  //     <h6><b>Submitted By:</b> ${updatedRecipe.author}</h6>
+  //     <p><b>Cookie Type:</b> ${updatedRecipe.cookieType}</p>
+  //     <p><b>Ingredients Needed:</b></p>
+  //     <ul>
+  //       ${ingredientHTML}
+  //     </ul>
+  //     <p><b>Baking Directions:</b> ${updatedRecipe.directions}</p>
+  //     </div>
+  //     <br>
+  //     `)
+  $('#updateRecipeModal').modal('toggle')
   $('.recipe-display').show()
   $('#find-recipe-mine').show()
   $('.recipe-display-header').show()
-  $('.recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
-  $('.recipe-display').html(recipeHTML)
+  // $('.recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
+  $('.recipe-display-header').text('Your update is baking!')
+  // $('.recipe-display').html(recipeHTML)
+  $('.recipe-display').html(' ')
   $('.change-pw-button').hide()
+  $('.destroy-recipe').show()
+  $('.updateRecipeId').hide()
+  $('.update-button-div').show()
   $('#message').text(' ')
   $('form').trigger('reset')
 }
 
 const updateRecipeFailure = function (error) {
   $('#message').text(`Uh Oh, something went wrong! Couldn't Update that because: ${error.responseJSON.message}`)
+}
+
+// show update success and failure
+
+const lookAtUpdateSuccess = function (response) {
+  store.recipe = response.recipe
+  const thisRecipe = store.recipe
+  // console.log('this is show one Recipe store.recipe', thisRecipe)
+
+  let ingredientHTML = ''
+  thisRecipe.ingredients.forEach(ing => {
+    ingredientHTML += `<li>${ing}</li>`
+  })
+  let recipeHTML = thisRecipe
+  recipeHTML = (`
+      <br>
+      <div class="each-response">
+      <div class="display-toprow">
+        <h4><b>Recipe Name:</b> ${thisRecipe.name}</h4>
+        <button type="button" class="like-1">Like</button>
+      </div>
+      <p><b>Recipe ID:</b> ${thisRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${thisRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${thisRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
+      <ul>
+        ${ingredientHTML}
+      </ul>
+      <p><b>Baking Directions:</b> ${thisRecipe.directions}</p>
+      </div>
+      <br>
+      `)
+  $('.recipe-display').show()
+  $('.recipe-display-header').show()
+  $('#show-update').show()
+  $('.recipe-display').html(recipeHTML)
+  $('.recipe-display-header').text('Hot from the oven, here is your recipe!:')
+  $('#after-create-button-click').hide()
+  $('.change-pw-button').hide()
+  $('.after-find-one').show()
+  $('.destroy-recipe').show()
+  $('.update-button-div').hide()
+  // $('#delete-recipe').hide()
+  $('#message').text(' ')
+  $('form').trigger('reset')
+}
+
+const lookAtUpdateFailure = function (error) {
+  $('#message').text(`Uh Oh, something went wrong...Error: ${error.statusText}`)
+  $('form').trigger('reset')
 }
 
 // like button click success and Failure
@@ -417,5 +481,7 @@ module.exports = {
   onLikeButtonSuccess: onLikeButtonSuccess,
   onLikeButtonFailure: onLikeButtonFailure,
   onMyFavoritesSuccess: onMyFavoritesSuccess,
-  onMyFavoritesFailure: onMyFavoritesFailure
+  onMyFavoritesFailure: onMyFavoritesFailure,
+  lookAtUpdateSuccess: lookAtUpdateSuccess,
+  lookAtUpdateFailure: lookAtUpdateFailure
 }

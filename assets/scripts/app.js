@@ -15,6 +15,8 @@ $(() => {
   $('#find-recipe-any').hide()
   $('#sign-up').hide()
   $('#sign-in').hide()
+  $('.deleteInput').hide()
+  $('.update-button-div').hide()
 
   // event listeners
   $('#sign-up').on('submit', authEvents.onSignUp)
@@ -33,6 +35,7 @@ $(() => {
   $('#find-recipe-any').on('submit', recipeEvents.onShowAny)
   $('#show-update').on('click', recipeEvents.onShowUpdate)
   $('#update-recipe').on('submit', recipeEvents.onUpdateOne)
+  $('.look-at-update').on('submit', recipeEvents.onLookAtUpdate)
   $('.change-pw-button').on('click', recipeEvents.onShowChangePass)
   $('.back-button').on('click', recipeEvents.onBackToMenu)
   $('.recipe-display').on('click', '.like-1', recipeEvents.onLikeButton)
@@ -42,5 +45,8 @@ $(() => {
   $('#updateRecipeModal').on('shown.bs.modal', function () {
     $('#updateRecipeModal').trigger('focus')
     $('.updateRecipeId').hide()
+  })
+  $('#destroyModal').on('shown.bs.modal', function () {
+    $('#destroyModal').trigger('focus')
   })
 })

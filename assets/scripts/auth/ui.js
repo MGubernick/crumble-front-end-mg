@@ -23,7 +23,7 @@ const signInSuccess = function (response) {
   $('#find-recipe-any').hide()
   $('.update-form').hide()
   $('#show-update').hide()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('.destroy-recipe').hide()
   $('#change-password').hide()
   $('#index-recipes').show()

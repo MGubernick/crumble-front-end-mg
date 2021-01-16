@@ -55,11 +55,29 @@
       <button id="my-favorite-recipes" type="button">Checkout The Favorites</button>
     </div>
 
-    <form id="delete-recipe">
-      <input type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+    <!-- Delete Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="destroyModalLabel">Burt A Recipe?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="delete-recipe">
+              <input class="deleteInput"type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+                <h5>Are You Sure?</h5>
+              <button type="button" data-dismiss="modal">Close</button>
+              <button class="destroy" type="submit" name="button" data-toggle="modal" data-target="#destroyModal">Delete It!</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <button class="destroy" type="submit" name="button">Delete It!</button>
-    </form>
 
     <form id="find-recipe-mine">
       <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
@@ -135,11 +153,11 @@
           <br>
           <small>Separate each ingredient by a comma!</small>
           <br>
-          <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Updated Ingredients Here"></textarea>
+          <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Updated Ingredients Here" required="true"></textarea>
           <br>
           <textarea class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Updated Baking Directions Here"></textarea>
           <button type="button" class="closeButton" data-dismiss="modal">Close</button>
-          <button class="crumble-update-button" type="submit" data-toggle="modal" data-target="#updateRecipeModal">Make A Change!</button>
+          <button class="crumble-update-button" type="submit" data-toggle="modal">Make A Change!</button>
         </form>
       </div>
     </div>
@@ -149,7 +167,7 @@
   </div>
 <div class="destroy-sign-out">
   <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
-  <button class="destroy-recipe" type="button" name="button">Delete This Recipe!</button>
+  <button class="destroy-recipe" type="button" name="button" data-toggle="modal" data-target="#destroyModal">Delete This Recipe!</button>
 </div>
 
 </div>
@@ -157,6 +175,12 @@
 <div class="bottom-stuff">
 
 <div class="recipe-display-header">
+</div>
+<div class="update-button-div">
+  <form class="look-at-update">
+    <input class="updateRecipeId" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+    <button class="check-the-update" type="submit">Check The Fresh Update</button>
+  </form>
 </div>
 <div class="recipe-display">
 </div>

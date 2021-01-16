@@ -15,7 +15,7 @@ const onShowCreate = function (event) {
   $('.recipe-display').hide()
   $('.recipe-display-header').hide()
   $('.update-form').hide()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
   $('#show-update').hide()
@@ -33,7 +33,7 @@ const onShowUpdate = function (event) {
   $('.change-pw-button').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('form').trigger('reset')
 }
 
@@ -44,7 +44,7 @@ const onBackToMenu = function (event) {
   $('#change-password').hide()
   $('#find-recipe-mine').hide()
   $('#find-recipe-any').hide()
-  $('#delete-recipe').hide()
+  // $('#delete-recipe').hide()
   $('.destroy-recipe').hide()
   $('#show-update').hide()
   $('.update-form').hide()
@@ -54,7 +54,7 @@ const onBackToMenu = function (event) {
 }
 
 const onDestroyButton = function (event) {
-  $('#delete-recipe').show()
+  // $('#delete-recipe').show()
 }
 
 const onCreateRecipe = function (event) {
@@ -103,6 +103,7 @@ const onDestroyIt = function (event) {
 
   const form = event.target
   const recipeData = getFormFields(form)
+  recipeData.recipe._id = store.recipe._id
 
   api.destroyRecipe(recipeData)
     .then(ui.destroyRecipeSuccess)
@@ -135,11 +136,25 @@ const onUpdateOne = function (event) {
 
   const form = event.target
   const recipeData = getFormFields(form)
+  // recipeData.recipe.ingredients = store.recipe.ingredients
+  // console.log('here is recipeData', recipeData)
   recipeData.recipe._id = store.recipe._id
 
   api.updateRecipe(recipeData)
     .then(ui.updateRecipeSuccess)
     .catch(ui.updateRecipeFailure)
+}
+
+const onLookAtUpdate = function (event) {
+  event.preventDefault()
+
+  const form = event.target
+  const recipeData = getFormFields(form)
+  recipeData.recipe._id = store.recipe._id
+
+  api.showOneRecipe(recipeData)
+    .then(ui.lookAtUpdateSuccess)
+    .catch(ui.lookAtUpdateFailure)
 }
 
 const onLikeButton = function () {
@@ -164,5 +179,6 @@ module.exports = {
   onShowAny: onShowAny,
   onDestroyButton: onDestroyButton,
   onLikeButton: onLikeButton,
-  onMyFavorites: onMyFavorites
+  onMyFavorites: onMyFavorites,
+  onLookAtUpdate: onLookAtUpdate
 }
