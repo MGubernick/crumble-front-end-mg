@@ -4,6 +4,7 @@
 // const example = require('./example')
 const authEvents = require('./auth/events.js')
 const recipeEvents = require('./recipe/events.js')
+const store = require('./store.js')
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
@@ -44,6 +45,17 @@ $(() => {
   })
   $('#updateRecipeModal').on('shown.bs.modal', function () {
     $('#updateRecipeModal').trigger('focus')
+    // console.log('this is store', store)
+    const updateName = store.recipe.name
+    document.getElementById('updateRecipeName').value = updateName
+    const updateAuthor = store.recipe.author
+    document.getElementById('updateRecipeAuthor').value = updateAuthor
+    const updateCookieType = store.recipe.cookieType
+    document.getElementById('updateRecipeType').value = updateCookieType
+    const updateIngredients = store.recipe.ingredients
+    document.getElementById('updateRecipeIngredients').value = updateIngredients
+    const updateDirections = store.recipe.directions
+    document.getElementById('updateRecipeDirections').value = updateDirections
     $('.updateRecipeId').hide()
   })
   $('#destroyModal').on('shown.bs.modal', function () {

@@ -145,17 +145,17 @@
       <div class="modal-body">
         <form id="update-recipe">
           <input class="updateRecipeId" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
-          <input type="text" name="recipe[name]" placeholder="Updated Recipe Name" />
+          <input id="updateRecipeName" type="text" name="recipe[name]" placeholder="Updated Recipe Name" value="updateName" />
           <br>
-          <input type="text" name="recipe[author]" placeholder="Updated Recipe Auther" />
+          <input id="updateRecipeAuthor" type="text" name="recipe[author]" placeholder="Updated Recipe Auther" value="updateAuthor" />
           <br>
-          <input type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" />
+          <input id="updateRecipeType" type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" value="updateCookieType" />
           <br>
           <small>Separate each ingredient by a comma!</small>
           <br>
-          <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Updated Ingredients Here" required="true"></textarea>
+          <textarea id="updateRecipeIngredients" class="ingredients" name="recipe[ingredients]" rows="4" cols="40"  value="updateIngredients" required="true"></textarea>
           <br>
-          <textarea class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Updated Baking Directions Here"></textarea>
+          <textarea id="updateRecipeDirections" class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Updated Baking Directions Here" value="updateDirections"></textarea>
           <button type="button" class="closeButton" data-dismiss="modal">Close</button>
           <button class="crumble-update-button" type="submit" data-toggle="modal">Make A Change!</button>
         </form>

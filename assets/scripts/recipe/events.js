@@ -137,7 +137,6 @@ const onUpdateOne = function (event) {
   const form = event.target
   const recipeData = getFormFields(form)
   // recipeData.recipe.ingredients = store.recipe.ingredients
-  // console.log('here is recipeData', recipeData)
   recipeData.recipe._id = store.recipe._id
 
   api.updateRecipe(recipeData)

@@ -357,36 +357,36 @@ const showAnyRecipeFailure = function (error) {
 // Figure out why updatedRecipe.ingredients.forEach isn't a function....
 const updateRecipeSuccess = function (response) {
   store.recipe = response.recipe
-  // const updatedRecipe = store.recipe
-  // let ingredientHTML = ''
-  // updatedRecipe.ingredients.forEach(ing => {
-  //   ingredientHTML += `<li>${ing}</li>`
-  // })
-  // let recipeHTML = updatedRecipe
-  // recipeHTML = (`
-  //     <br>
-  //     <div class="each-response">
-  //     <div class="display-toprow">
-  //       <h4><b>Recipe Name:</b> ${updatedRecipe.name}</h4>
-  //     </div>
-  //     <p><b>Recipe ID:</b> ${updatedRecipe._id}</p>
-  //     <h6><b>Submitted By:</b> ${updatedRecipe.author}</h6>
-  //     <p><b>Cookie Type:</b> ${updatedRecipe.cookieType}</p>
-  //     <p><b>Ingredients Needed:</b></p>
-  //     <ul>
-  //       ${ingredientHTML}
-  //     </ul>
-  //     <p><b>Baking Directions:</b> ${updatedRecipe.directions}</p>
-  //     </div>
-  //     <br>
-  //     `)
+  const updatedRecipe = store.recipe
+  let ingredientHTML = ''
+  updatedRecipe.ingredients.forEach(ing => {
+    ingredientHTML += `<li>${ing}</li>`
+  })
+  let recipeHTML = updatedRecipe
+  recipeHTML = (`
+      <br>
+      <div class="each-response">
+      <div class="display-toprow">
+        <h4><b>Recipe Name:</b> ${updatedRecipe.name}</h4>
+      </div>
+      <p><b>Recipe ID:</b> ${updatedRecipe._id}</p>
+      <h6><b>Submitted By:</b> ${updatedRecipe.author}</h6>
+      <p><b>Cookie Type:</b> ${updatedRecipe.cookieType}</p>
+      <p><b>Ingredients Needed:</b></p>
+      <ul>
+        ${ingredientHTML}
+      </ul>
+      <p><b>Baking Directions:</b> ${updatedRecipe.directions}</p>
+      </div>
+      <br>
+      `)
   $('#updateRecipeModal').modal('toggle')
   $('.recipe-display').show()
   $('#find-recipe-mine').show()
   $('.recipe-display-header').show()
   // $('.recipe-display-header').text('Hot from the oven, here is your updated recipe!:')
   $('.recipe-display-header').text('Your update is baking!')
-  // $('.recipe-display').html(recipeHTML)
+  $('.recipe-display').html(recipeHTML)
   $('.recipe-display').html(' ')
   $('.change-pw-button').hide()
   $('.destroy-recipe').show()
