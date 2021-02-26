@@ -24,16 +24,14 @@
 
   <div class="before-sign-in">
     <button class="welcome" type="button">Welcome!</button>
+    <div class="dummy">
+      <h4>If you would rather not make an account, feel free to use these credentials:</h4>
+      <h6><small>(Email: te@st.com Password: 123)</small></h6>
+    </div>
     <form id="sign-in">
-      <div class="dummy">
-        <h4>If you would rather not make an account, feel free to use these credentials:</h4>
-        <h6><small>(Email: te@st.com Password: 123)</small></h6>
-      </div>
-      <div class="centerme">
-        <input class="signin" type="text" name="credentials[email]" placeholder="email" />
-        <input class="signin" type="password" name="credentials[password]" placeholder="password" />
-        <button type="submit" name="button">Sign In!</button>
-      </div>
+      <input type="text" name="credentials[email]" placeholder="email" />
+      <input type="password" name="credentials[password]" placeholder="password" />
+      <button type="submit" name="button">Sign In!</button>
     </form>
 
     <form id="sign-up">
