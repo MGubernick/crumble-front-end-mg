@@ -74,6 +74,12 @@ h1 {
   flex-direction: row;
 }
 
+.centerme {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .app-name {
   font-family: 'Freckle Face', cursive;
 }
