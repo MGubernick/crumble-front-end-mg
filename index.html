@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Crumble!</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Crumble!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <div class="header">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-      <h1 class="app-name">Crumble!</h1>
-      <h6 class="tagline">Lets Find A Cookie That Makes Your Heart Crumble!</h6>
-      <br>
-      <h2 id="message"></h2>
-      </div>
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <div class="header">
+
+    <h1 class="app-name">Crumble!</h1>
+    <h6 class="tagline">Lets Find A Cookie That Makes Your Heart Crumble!</h6>
+    <br>
+    <h2 id="message"></h2>
+  </div>
 
   <div class="before-sign-in">
     <button class="welcome" type="button">Welcome!</button>
-    <form id="sign-in">
+    <form id="sign-in" class="dummy">
       <div class="dummy">
-      <h4>If you would rather not make an account, feel free to use these credentials:</h4>
-      <h6><small>(Email: te@st.com Password: 123)</small></h6>
-    </div>
+        <h4>If you would rather not make an account, feel free to use these credentials:</h4>
+        <h6><small>(Email: te@st.com Password: 123)</small></h6>
+      </div>
       <input type="text" name="credentials[email]" placeholder="email" />
       <input type="password" name="credentials[password]" placeholder="password" />
       <button type="submit" name="button">Sign In!</button>
@@ -43,156 +45,157 @@
   <div class="after-sign-in">
     <div class="top-stuff">
 
-    <button class="change-pw-button" type="button" name="button">Change Password</button>
+      <button class="change-pw-button" type="button" name="button">Change Password</button>
 
-    <form id="change-password">
-      <input type="password" name="passwords[old]" placeholder="Old Password" />
-      <input type="password" name="passwords[new]" placeholder="New Password" />
-      <button type="submit" name="button">Change My Password!</button>
-    </form>
+      <form id="change-password">
+        <input type="password" name="passwords[old]" placeholder="Old Password" />
+        <input type="password" name="passwords[new]" placeholder="New Password" />
+        <button type="submit" name="button">Change My Password!</button>
+      </form>
 
-    <div id="index-recipes">
-      <button id="all-the-recipes" type="button">Checkout All The Recipes</button>
+      <div id="index-recipes">
+        <button id="all-the-recipes" type="button">Checkout All The Recipes</button>
 
-      <button id="all-my-recipes" type="button">Checkout All My Recipes</button>
+        <button id="all-my-recipes" type="button">Checkout All My Recipes</button>
 
-      <button id="my-favorite-recipes" type="button">Checkout The Favorites</button>
-    </div>
+        <button id="my-favorite-recipes" type="button">Checkout The Favorites</button>
+      </div>
 
-    <!-- Delete Modal -->
-    <!-- Modal -->
-    <div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="destroyModalLabel">Burt A Recipe?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="delete-recipe">
-              <input class="deleteInput"type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+      <!-- Delete Modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="destroyModalLabel">Burt A Recipe?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="delete-recipe">
+                <input class="deleteInput" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
                 <h5>Are You Sure?</h5>
-              <button type="button" data-dismiss="modal">Close</button>
-              <button class="destroy" type="submit" name="button" data-toggle="modal" data-target="#destroyModal">Delete It!</button>
-            </form>
+                <button type="button" data-dismiss="modal">Close</button>
+                <button class="destroy" type="submit" name="button" data-toggle="modal" data-target="#destroyModal">Delete It!</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+
+
+      <form id="find-recipe-mine">
+        <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+        <button type="submit">Find My Recipe</button>
+      </form>
+
+      <form id="find-recipe-any">
+        <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+        <button type="submit">Find This Recipe</button>
+      </form>
+
+      <div class="create-button">
+        <button class="create" type="button" data-toggle="modal" data-target="#createRecipeModal">Create A Recipe!</button>
+        <button class="back-button" type="button" name="button">Back to Menu</button>
+      </div>
+
+
+      <div id="after-create-button-click">
+        <!-- Modal -->
+        <div class="modal fade" id="createRecipeModal" tabindex="-1" aria-labelledby="createRecipeModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="createRecipeModalLabel">Crumble A Recipe!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="create-recipe">
+                  <input type="text" name="recipe[name]" placeholder="Recipe Name" />
+                  <br>
+                  <input type="text" name="recipe[author]" placeholder="Recipe Author" />
+                  <br>
+                  <input type="text" name="recipe[cookieType]" placeholder="Cookie Type (ex: Chocolate Chip, Shortbread...)" />
+                  <br>
+                  <small>Separate each ingredient by a comma!</small>
+                  <br>
+                  <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Ingredients Here"></textarea>
+                  <br>
+                  <textarea class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Baking Directions Here"></textarea>
+                  <button type="button" class="closeButton" data-dismiss="modal">Close</button>
+                  <button class="crumble-button" type="submit" data-toggle="modal" data-target="#createRecipeModal">Crumble My Recipe!</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="after-find-one">
+        <!-- button to show update -->
+        <button id="show-update" type="button" name="button" data-toggle="modal" data-target="#updateRecipeModal">Update</button>
+        <div class="update-form">
+          <!-- Modal -->
+          <div class="modal fade" id="updateRecipeModal" tabindex="-1" aria-labelledby="updateRecipeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="updateRecipeModalLabel">Update The Recipe!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="update-recipe">
+                    <input class="updateRecipeId" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
+                    <input id="updateRecipeName" type="text" name="recipe[name]" placeholder="Updated Recipe Name" value="updateName" />
+                    <br>
+                    <input id="updateRecipeAuthor" type="text" name="recipe[author]" placeholder="Updated Recipe Auther" value="updateAuthor" />
+                    <br>
+                    <input id="updateRecipeType" type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" value="updateCookieType" />
+                    <br>
+                    <small>Separate each ingredient by a comma!</small>
+                    <br>
+                    <textarea id="updateRecipeIngredients" class="ingredients" name="recipe[ingredients]" rows="4" cols="40" value="updateIngredients" required="true"></textarea>
+                    <br>
+                    <textarea id="updateRecipeDirections" class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Updated Baking Directions Here" value="updateDirections"></textarea>
+                    <button type="button" class="closeButton" data-dismiss="modal">Close</button>
+                    <button class="crumble-update-button" type="submit" data-toggle="modal">Make A Change!</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="destroy-sign-out">
+        <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
+        <button class="destroy-recipe" type="button" name="button" data-toggle="modal" data-target="#destroyModal">Delete This Recipe!</button>
+      </div>
+
     </div>
 
+    <div class="bottom-stuff">
 
-    <form id="find-recipe-mine">
-      <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
-      <button type="submit">Find My Recipe</button>
-    </form>
-
-    <form id="find-recipe-any">
-      <input class="recipe-id-space" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
-      <button type="submit">Find This Recipe</button>
-    </form>
-
-    <div class="create-button">
-      <button class="create" type="button" data-toggle="modal" data-target="#createRecipeModal">Create A Recipe!</button>
-      <button class="back-button" type="button" name="button">Back to Menu</button>
-    </div>
-
-
-  <div id="after-create-button-click">
-<!-- Modal -->
-<div class="modal fade" id="createRecipeModal" tabindex="-1" aria-labelledby="createRecipeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createRecipeModalLabel">Crumble A Recipe!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="recipe-display-header">
       </div>
-      <div class="modal-body">
-        <form id="create-recipe">
-          <input type="text" name="recipe[name]" placeholder="Recipe Name" />
-          <br>
-          <input type="text" name="recipe[author]" placeholder="Recipe Author" />
-          <br>
-          <input type="text" name="recipe[cookieType]" placeholder="Cookie Type (ex: Chocolate Chip, Shortbread...)" />
-          <br>
-          <small>Separate each ingredient by a comma!</small>
-          <br>
-          <textarea class="ingredients" name="recipe[ingredients]" rows="4" cols="40" placeholder="Ingredients Here"></textarea>
-          <br>
-          <textarea class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Baking Directions Here"></textarea>
-          <button type="button" class="closeButton" data-dismiss="modal">Close</button>
-          <button class="crumble-button" type="submit" data-toggle="modal" data-target="#createRecipeModal">Crumble My Recipe!</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-
-  <div class="after-find-one">
-<!-- button to show update -->
-    <button id="show-update" type="button" name="button" data-toggle="modal" data-target="#updateRecipeModal">Update</button>
-    <div class="update-form">
-<!-- Modal -->
-<div class="modal fade" id="updateRecipeModal" tabindex="-1" aria-labelledby="updateRecipeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateRecipeModalLabel">Update The Recipe!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="update-recipe">
+      <div class="update-button-div">
+        <form class="look-at-update">
           <input class="updateRecipeId" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
-          <input id="updateRecipeName" type="text" name="recipe[name]" placeholder="Updated Recipe Name" value="updateName" />
-          <br>
-          <input id="updateRecipeAuthor" type="text" name="recipe[author]" placeholder="Updated Recipe Auther" value="updateAuthor" />
-          <br>
-          <input id="updateRecipeType" type="text" name="recipe[cookieType]" placeholder="Updated Cookie Type (ex: Chocolate Chip, Shortbread...)" value="updateCookieType" />
-          <br>
-          <small>Separate each ingredient by a comma!</small>
-          <br>
-          <textarea id="updateRecipeIngredients" class="ingredients" name="recipe[ingredients]" rows="4" cols="40"  value="updateIngredients" required="true"></textarea>
-          <br>
-          <textarea id="updateRecipeDirections" class="directions" name="recipe[directions]" rows="4" cols="40" placeholder="Updated Baking Directions Here" value="updateDirections"></textarea>
-          <button type="button" class="closeButton" data-dismiss="modal">Close</button>
-          <button class="crumble-update-button" type="submit" data-toggle="modal">Make A Change!</button>
+          <button class="check-the-update" type="submit">Check The Fresh Update</button>
         </form>
       </div>
+      <div class="recipe-display">
+      </div>
+
     </div>
+
   </div>
-</div>
-    </div>
-  </div>
-<div class="destroy-sign-out">
-  <button id="sign-out" class="sign-out" type="button" name="button">Sign Out!</button>
-  <button class="destroy-recipe" type="button" name="button" data-toggle="modal" data-target="#destroyModal">Delete This Recipe!</button>
-</div>
-
-</div>
-
-<div class="bottom-stuff">
-
-<div class="recipe-display-header">
-</div>
-<div class="update-button-div">
-  <form class="look-at-update">
-    <input class="updateRecipeId" type="text" name="recipe[_id]" placeholder="Recipe ID here" />
-    <button class="check-the-update" type="submit">Check The Fresh Update</button>
-  </form>
-</div>
-<div class="recipe-display">
-</div>
-
-</div>
-
-</div>
 
 
-    </body>
+</body>
+
 </html>
