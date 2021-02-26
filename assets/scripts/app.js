@@ -16,6 +16,7 @@ $(() => {
   $('#find-recipe-any').hide()
   $('#sign-up').hide()
   $('#sign-in').hide()
+  $('.dummy').hide()
   $('.deleteInput').hide()
   $('.update-button-div').hide()
 

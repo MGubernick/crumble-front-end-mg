@@ -9,6 +9,7 @@ const onWelcome = function (event) {
   $('#sign-in').show()
   $('#sign-up').show()
   $('.welcome').hide()
+  $('.dummy').show()
 }
 // create functions that will be referenced by event listeners in app.js
 const onSignUp = function (event) {
