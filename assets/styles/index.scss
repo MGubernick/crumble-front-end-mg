@@ -65,6 +65,7 @@ h1 {
 .dummy {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
